@@ -1,0 +1,40 @@
+<header class="header d-lg-none">
+  <nav class="navbar navbar-lg-expand header__navbar">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand header__navbar__brand">
+        <span class="me-3">
+          <img src="assets/profile-image.svg" alt="Profile image">
+        </span>
+        <span>
+          <h3>{{ username }}</h3>
+          <p>client</p>
+        </span>
+      </a>
+      <button class="navbar-toggler header__navbar__button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
+        aria-label="Toggle navigation" (click)="isMenuCollapsed = !isMenuCollapsed">
+        <fa-icon class="header__navbar__icon" [icon]="'bars'"></fa-icon>
+      </button>
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav header__navbar__items mt-3 ms-2">
+          <li class="nav-item">
+            <fa-icon [icon]="'house'"></fa-icon>
+            Dashboard
+          </li>
+          <li class="nav-item">
+            <fa-icon [icon]="'briefcase'"></fa-icon>
+            Portfolios
+          </li>
+          <li class="nav-item">
+            <fa-icon [icon]="'cart-shopping'"></fa-icon>
+            Orders
+          </li>
+          <li class="nav-item">
+            <fa-icon [icon]="'money-bill-trend-up'"></fa-icon>
+            Market trends
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

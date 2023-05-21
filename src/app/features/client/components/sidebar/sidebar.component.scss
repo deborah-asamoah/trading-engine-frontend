@@ -1,0 +1,68 @@
+.sidebar {
+  background-color: var(--color-light-green);
+  height: 100vh;
+  overflow-y: hidden;
+
+  &__icon-bar {
+    background-color: var(--color-dark-green);
+
+    &__icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style-type: none;
+      padding: 0;
+      margin-top: 7rem;
+      color: var(--color-white);
+
+      & li {
+        margin-bottom: 3rem;
+
+        & fa-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+  &__text {
+    margin-top: 2rem;
+    font-size: 2rem;
+
+    &__items {
+      list-style: none;
+      margin-top: 5.8rem;
+      color: var(--color-white);
+
+      & li {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+  &__app-name {
+    font-family: var(--font-playfair);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: 0.2rem;
+  }
+  &__user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    color: var(--color-white);
+
+    & h3 {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    & p {
+      font-size: 1.5rem;
+    }
+    & img {
+      height: 4rem;
+    }
+    & span {
+      display: inline-block;
+    }
+  }
+}
