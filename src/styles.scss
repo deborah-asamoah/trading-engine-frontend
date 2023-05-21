@@ -31,6 +31,7 @@ picture {
   padding: 0;
 }
 
+/* set up general font size */
 html {
   font-size: 62.5%;
 }
@@ -57,6 +58,15 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+/* remove link styles */
+a,
+a:hover,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: unset;
 }
 
 /* remove animations for people who turned them off */

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { faBars, faHouse } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +7,9 @@ import { faBars, faHouse } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarComponent {
   @Input() username: string = '';
-
   isMenuCollapsed = true;
+
+  logout() {
+    console.log('log out');
+  }
 }

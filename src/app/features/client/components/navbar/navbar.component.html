@@ -1,4 +1,4 @@
-<header class="header d-lg-none">
+<header class="header d-xl-none">
   <nav class="navbar navbar-lg-expand header__navbar">
     <div class="container-fluid">
       <a href="#" class="navbar-brand header__navbar__brand">
@@ -17,21 +17,33 @@
       </button>
       <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav header__navbar__items mt-3 ms-2">
-          <li class="nav-item">
-            <fa-icon [icon]="'house'"></fa-icon>
-            Dashboard
+          <li routerLinkActive="active" class="nav-item">
+            <a routerLink="/client/dashboard">
+              <fa-icon [icon]="'house'"></fa-icon>
+              Dashboard
+            </a>
           </li>
-          <li class="nav-item">
-            <fa-icon [icon]="'briefcase'"></fa-icon>
-            Portfolios
+          <li routerLinkActive="active" class="nav-item">
+            <a routerLink="/client/portfolios">
+              <fa-icon [icon]="'briefcase'"></fa-icon>
+              Portfolios
+            </a>
           </li>
-          <li class="nav-item">
-            <fa-icon [icon]="'cart-shopping'"></fa-icon>
-            Orders
+          <li routerLinkActive="active" class="nav-item">
+            <a routerLink="/client/orders">
+              <fa-icon [icon]="'cart-shopping'"></fa-icon>
+              Orders
+            </a>
           </li>
-          <li class="nav-item">
-            <fa-icon [icon]="'money-bill-trend-up'"></fa-icon>
-            Market trends
+          <li routerLinkActive="active" class="nav-item">
+            <a routerLink="/client/market-trends">
+              <fa-icon [icon]="'money-bill-trend-up'"></fa-icon>
+              Market trends
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item" (click)="logout()">
+            <fa-icon [icon]="'arrow-right-from-bracket'"></fa-icon>
+            Logout
           </li>
         </ul>
       </div>
