@@ -1,1 +1,6 @@
-<p>dashboard works!</p>
+<div class="dashboard container-md">
+  <app-dashboard-heading class="dashboard__heading" [username]="client.username"></app-dashboard-heading>
+  <app-dashboard-market-brief class="dashboard__market-brief"></app-dashboard-market-brief>
+  <app-dashboard-order-box class="dashboard__order-box"></app-dashboard-order-box>
+  <app-dashboard-trend-box class="dashboard__trend-box"></app-dashboard-trend-box>
+</div>
