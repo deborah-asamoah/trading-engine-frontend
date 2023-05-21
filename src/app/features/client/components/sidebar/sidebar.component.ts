@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class SidebarComponent {
   @Input() username = '';
+
+  logout() {
+    console.log('logged out');
+  }
 }

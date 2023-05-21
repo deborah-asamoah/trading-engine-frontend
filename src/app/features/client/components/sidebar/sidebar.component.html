@@ -3,23 +3,24 @@
     <h2 class="sidebar__app-name">JDG</h2>
     <ul class="sidebar__icon-bar__icons">
       <li>
-        <fa-icon [icon]="'house'"></fa-icon>
+        <a routerLink="/client/dashboard"><fa-icon [icon]="'house'"></fa-icon></a>
       </li>
       <li>
-        <fa-icon [icon]="'briefcase'"></fa-icon>
+        <a routerLink="/client/portfolios"><fa-icon [icon]="'briefcase'"></fa-icon></a>
       </li>
       <li>
-        <fa-icon [icon]="'cart-shopping'"></fa-icon>
+        <a routerLink="/client/orders"><fa-icon [icon]="'cart-shopping'"></fa-icon></a>
       </li>
       <li>
-        <fa-icon [icon]="'money-bill-trend-up'"></fa-icon>
+        <a routerLink="/client/market-trends"><fa-icon [icon]="'money-bill-trend-up'"></fa-icon></a>
       </li>
+      <li class="mt-auto" (click)="logout()"><fa-icon [icon]="'arrow-right-from-bracket'"></fa-icon></li>
     </ul>
   </div>
   <div class="sidebar__text col-9 pb-5">
     <div class="sidebar__user-info">
       <span class="me-3">
-        <img src="assets/profile-image.svg" alt="Profile image">
+        <img src="assets/profile-image.svg" alt="Profile image" />
       </span>
       <span>
         <h3>{{ username }}</h3>
@@ -27,10 +28,11 @@
       </span>
     </div>
     <ul class="sidebar__text__items">
-      <li><a routerLink="/client/dashboard">Dashboard</a></li>
-      <li><a routerLink="/client/portfolios">Portfolios</a></li>
-      <li><a routerLink="/client/orders">Orders</a></li>
-      <li><a routerLink="/client/market-trends">Market trends</a></li>
+      <li routerLinkActive="active"><a routerLink="/client/dashboard">Dashboard</a></li>
+      <li routerLinkActive="active"><a routerLink="/client/portfolios">Portfolios</a></li>
+      <li routerLinkActive="active"><a routerLink="/client/orders">Orders</a></li>
+      <li routerLinkActive="active"><a routerLink="/client/market-trends">Market trends</a></li>
+      <li class="mt-auto" (click)="logout()">Logout</li>
     </ul>
   </div>
 </nav>

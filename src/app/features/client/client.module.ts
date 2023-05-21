@@ -12,6 +12,7 @@ import {
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
+  faArrowRightFromBracket,
   faBars,
   faBriefcase,
   faCartShopping,
@@ -35,7 +36,8 @@ export class ClientModule {
       faHouse,
       faBriefcase,
       faCartShopping,
-      faMoneyBillTrendUp
+      faMoneyBillTrendUp,
+      faArrowRightFromBracket
     );
   }
 }
