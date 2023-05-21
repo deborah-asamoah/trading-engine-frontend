@@ -1,1 +1,36 @@
-<nav></nav>
+<nav class="sidebar row gx-0">
+  <div class="sidebar__icon-bar col-3 pt-5 pb-5 text-center">
+    <h2 class="sidebar__app-name">JDG</h2>
+    <ul class="sidebar__icon-bar__icons">
+      <li>
+        <fa-icon [icon]="'house'"></fa-icon>
+      </li>
+      <li>
+        <fa-icon [icon]="'briefcase'"></fa-icon>
+      </li>
+      <li>
+        <fa-icon [icon]="'cart-shopping'"></fa-icon>
+      </li>
+      <li>
+        <fa-icon [icon]="'money-bill-trend-up'"></fa-icon>
+      </li>
+    </ul>
+  </div>
+  <div class="sidebar__text col-9 pb-5">
+    <div class="sidebar__user-info">
+      <span class="me-3">
+        <img src="assets/profile-image.svg" alt="Profile image">
+      </span>
+      <span>
+        <h3>{{ username }}</h3>
+        <p>client</p>
+      </span>
+    </div>
+    <ul class="sidebar__text__items">
+      <li><a routerLink="/client/dashboard">Dashboard</a></li>
+      <li><a routerLink="/client/portfolios">Portfolios</a></li>
+      <li><a routerLink="/client/orders">Orders</a></li>
+      <li><a routerLink="/client/market-trends">Market trends</a></li>
+    </ul>
+  </div>
+</nav>

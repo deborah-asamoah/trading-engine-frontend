@@ -1,6 +1,6 @@
 <app-navbar [username]="client.username"></app-navbar>
 <main class="row gx-0">
-  <app-sidebar class="col d-none d-lg-block"></app-sidebar>
+  <app-sidebar [username]="client.username" class="col d-none d-lg-block"></app-sidebar>
   <section class="col-lg-10 col-12">
     <router-outlet></router-outlet>
   </section>
