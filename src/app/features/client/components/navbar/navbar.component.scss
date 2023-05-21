@@ -1,0 +1,47 @@
+.header {
+  &__navbar {
+    background-color: var(--color-dark-green);
+
+    &__button {
+      border: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    &__icon {
+      color: var(--color-white);
+      font-size: 2rem;
+    }
+    &__brand {
+      display: flex;
+      align-items: center;
+      color: var(--color-white);
+
+      & img {
+        height: 4rem;
+      }
+      & h3 {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+      & p {
+        font-size: 1.5rem;
+      }
+      & span {
+        display: inline-block;
+      }
+    }
+    &__items {
+      color: var(--color-white);
+      font-size: 2rem;
+
+      & li {
+        margin-bottom: 1rem;
+      }
+      & li fa-icon {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

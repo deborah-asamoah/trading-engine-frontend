@@ -31,11 +31,17 @@ picture {
   padding: 0;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 /* Set up the body */
 body {
   line-height: 1.5;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
+  font-size: 1.6rem;
+  font-family: var(--font-roboto);
 }
 
 /* make images easier to work with */
