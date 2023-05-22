@@ -19,6 +19,12 @@ import {
   faHouse,
   faMoneyBillTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { DashboardHeadingComponent } from './components/dashboard-heading/dashboard-heading.component';
+import { DashboardMarketBriefComponent } from './components/dashboard-market-brief/dashboard-market-brief.component';
+import { DashboardOrderBoxComponent } from './components/dashboard-order-box/dashboard-order-box.component';
+import { DashboardTrendBoxComponent } from './components/dashboard-trend-box/dashboard-trend-box.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +32,20 @@ import {
     BaseComponent,
     SidebarComponent,
     NavbarComponent,
+    DashboardHeadingComponent,
+    DashboardMarketBriefComponent,
+    DashboardOrderBoxComponent,
+    DashboardTrendBoxComponent,
   ],
-  imports: [CommonModule, ClientRoutingModule, FontAwesomeModule, NgbModule],
+  imports: [
+    CommonModule,
+    ClientRoutingModule,
+    FontAwesomeModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class ClientModule {
   constructor(library: FaIconLibrary) {

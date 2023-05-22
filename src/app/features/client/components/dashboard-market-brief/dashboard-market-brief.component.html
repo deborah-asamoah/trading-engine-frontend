@@ -1,0 +1,40 @@
+<section class="dashboard__market-brief card rounded-4">
+  <div class="dashboard__market-brief__header">
+    <span>Market brief</span>
+    <select (change)="onSortMarketBrief($event)" class="form-select form-select-lg" aria-label="Default select example">
+      <option selected disabled value="">Sort</option>
+      <option value="stock">Stock</option>
+      <option value="bid">Bid Price</option>
+      <option value="ask">Ask Price</option>
+      <option value="shift">Max Price Shift</option>
+      <option value="traded">Last Traded Price</option>
+      <option value="trend">Trend</option>
+    </select>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover dashboard__market-brief__table">
+      <thead class="dashboard__market-brief__table__head">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Bid Price</th>
+          <th scope="col">Ask Price</th>
+          <th scope="col">Max Price Shift</th>
+          <th scope="col">Last Traded Price</th>
+          <th scope="col">Trend</th>
+        </tr>
+      </thead>
+      <tbody class="dashboard__market-brief__table__body">
+        <tr *ngFor="let stock of stockBriefList; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ stock.name }}</td>
+          <td>{{ stock.bidPrice }}</td>
+          <td>{{ stock.askPrice }}</td>
+          <td>{{ stock.maxPriceShift }}</td>
+          <td>{{ stock.lastTradedPrice }}</td>
+          <td>{{ stock.trend }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
