@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { OrderType } from 'src/app/core/models/order.model';
+import Portfolio from 'src/app/core/models/portfolio.model';
+import { ClientDataService } from 'src/app/shared/services/client-data.service';
 
 @Component({
   selector: 'app-dashboard-order-box',
@@ -17,18 +25,58 @@ export class DashboardOrderBoxComponent implements OnInit {
     'ORCL',
     'AMZN',
   ];
+  orderTypes: OrderType[] = [OrderType.LIMIT, OrderType.MARKET];
+  portfolios: Portfolio[];
+  constructor(private clientDataService: ClientDataService) {
+    this.portfolios = clientDataService.portfolios;
+  }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      stock: new FormControl<string>(''),
-      price: new FormControl<number>(0.0),
-      quantity: new FormControl<number>(0.0),
-      type: new FormControl<string>(''),
-      portfolioId: new FormControl<number | null>(null),
+      stock: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+      price: new FormControl<number | null>(null, {
+        validators: Validators.compose([
+          Validators.required,
+          Validators.min(1),
+        ]),
+        updateOn: 'submit',
+      }),
+      quantity: new FormControl<number | null>(null, {
+        validators: Validators.compose([
+          Validators.required,
+          Validators.min(1),
+        ]),
+        updateOn: 'submit',
+      }),
+      type: new FormControl<string>('', {
+        validators: Validators.compose([Validators.required]),
+        updateOn: 'submit',
+      }),
+      portfolioId: new FormControl<number | null>(null, {
+        validators: Validators.compose([Validators.required]),
+        updateOn: 'submit',
+      }),
     });
   }
 
-  onSubmit() {
-    console.log(this.formGroup);
+  get price(): AbstractControl {
+    return this.formGroup.get('price')!;
+  }
+  get quantity(): AbstractControl {
+    return this.formGroup.get('quantity')!;
+  }
+
+  onSubmit(event: Event) {
+    const form = <HTMLFormElement>event.target;
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+    console.log(this.formGroup.value);
+    form.reset();
   }
 }

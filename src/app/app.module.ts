@@ -9,12 +9,13 @@ import { AdminModule } from './features/admin/admin.module';
 import { AuthModule } from './features/auth/auth.module';
 import { ClientModule } from './features/client/client.module';
 import { HomeComponent } from './components/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
