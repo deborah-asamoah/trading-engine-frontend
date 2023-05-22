@@ -79,8 +79,4 @@ export class DashboardOrderBoxComponent implements OnInit {
     console.log(this.formGroup.value);
     form.reset();
   }
-  onCancel(event: Event) {
-    const form = <HTMLFormElement>event.target;
-    form.reset();
-  }
 }

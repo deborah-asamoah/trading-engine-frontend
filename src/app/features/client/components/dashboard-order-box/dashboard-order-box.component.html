@@ -40,7 +40,7 @@
     <div class="form-group">
       <label for="portfolio" class="form-label">Portfolio</label>
       <select class="form-select form-select-lg" id="portfolio" required formControlName="portfolioId">
-        <option selected disabled value="0">Select portfolio</option>
+        <option selected disabled value="">Select portfolio</option>
         <option *ngFor="let portfolio of portfolios" value="{{ portfolio.id }}">
           {{ portfolio.name }}
         </option>
@@ -49,7 +49,7 @@
     </div>
     <!-- Button row -->
     <div class="form-group dashboard__order-box__button-row">
-      <app-button text="Cancel" (click)="onCancel($event)" color="red"></app-button>
+      <app-button type="reset" text="Cancel" color="red"></app-button>
       <app-button text="Submit" color="green"></app-button>
     </div>
   </form>

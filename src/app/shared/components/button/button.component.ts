@@ -10,4 +10,5 @@ type Color = 'red' | 'green';
 export class ButtonComponent {
   @Input() text: string = '';
   @Input() color: Color = 'green';
+  @Input() type: string = 'submit';
 }
