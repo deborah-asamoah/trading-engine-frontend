@@ -1,0 +1,15 @@
+<section class="dashboard__order-box card rounded-4">
+  <form (ngSubmit)="onSubmit()" class="form" [formGroup]="formGroup" novalidate>
+    <fieldset>
+      <label for="stock" class="form-label">Stock</label>
+      <select class="form-select form-select-lg" id="stock" required formControlName="stock">
+        <option selected disabled value="">Select stock</option>
+        <option *ngFor="let stock of stockList" value="{{ stock }}">{{ stock }}</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a stock
+      </div>
+    </fieldset>
+    <button type="submit" class="btn">submit</button>
+  </form>
+</section>
