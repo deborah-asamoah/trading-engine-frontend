@@ -55,7 +55,7 @@ export class DashboardOrderBoxComponent implements OnInit {
         validators: Validators.compose([Validators.required]),
         updateOn: 'submit',
       }),
-      portfolioId: new FormControl<number | null>(null, {
+      portfolioId: new FormControl<number | null>(0, {
         validators: Validators.compose([Validators.required]),
         updateOn: 'submit',
       }),
@@ -77,6 +77,10 @@ export class DashboardOrderBoxComponent implements OnInit {
       return;
     }
     console.log(this.formGroup.value);
+    form.reset();
+  }
+  onCancel(event: Event) {
+    const form = <HTMLFormElement>event.target;
     form.reset();
   }
 }

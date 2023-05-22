@@ -13,4 +13,8 @@
       margin-bottom: 1.5rem;
     }
   }
+  &__button-row {
+    display: flex;
+    justify-content: space-between;
+  }
 }

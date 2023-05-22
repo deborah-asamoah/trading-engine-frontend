@@ -24,6 +24,7 @@ import { DashboardMarketBriefComponent } from './components/dashboard-market-bri
 import { DashboardOrderBoxComponent } from './components/dashboard-order-box/dashboard-order-box.component';
 import { DashboardTrendBoxComponent } from './components/dashboard-trend-box/dashboard-trend-box.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class ClientModule {
