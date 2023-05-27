@@ -16,7 +16,7 @@ export class ClientDataService {
     this._client = new Client('gerald-tetteh');
     this._portfolios = [
       new Portfolio(1, 'High Worth'),
-      new Portfolio(3, 'Skeptical'),
+      new Portfolio(2, 'Skeptical'),
       new Portfolio(3, 'Low Worth'),
     ];
   }
@@ -29,6 +29,7 @@ export class ClientDataService {
   }
 
   createOrder(order: Order) {
-    return this.http.post(`${this.BASE_URL}/order/create`, order);
+    order.portfolioId = Number(order.portfolioId);
+    return this.http.post(`${this.BASE_URL}/orders/create`, order);
   }
 }

@@ -3,24 +3,33 @@ export enum OrderType {
   LIMIT = 'LIMIT',
 }
 
+export enum OrderSide {
+  BUY = 'BUY',
+  SELL = 'SELL',
+}
+
+
 class Order {
-  stock: string;
+  product: string;
   price: number;
   type: OrderType;
   quantity: number;
+  side: OrderSide;
   portfolioId: number;
 
   constructor(
-    stock: string,
+    product: string,
     price: number,
     type: OrderType,
     quantity: number,
+    side: OrderSide,
     portfolioId: number
   ) {
-    this.stock = stock;
+    this.product = product;
     this.price = price;
     this.type = type;
     this.quantity = quantity;
+    this.side = side;
     this.portfolioId = portfolioId;
   }
 }
