@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import StockBrief from '../../models/stock-brief.model';
 import { MarketDataService } from '../../services/market-data/market-data.service';
 import { Message } from '@stomp/stompjs';
 import { Exchange } from 'src/app/core/models/exchange.enum';
 import MarketData from '../../models/market-data.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-market-brief',
   templateUrl: './dashboard-market-brief.component.html',
   styleUrls: ['./dashboard-market-brief.component.scss'],
 })
-export class DashboardMarketBriefComponent implements OnInit {
+export class DashboardMarketBriefComponent implements OnInit, OnDestroy {
   marketData: Map<Exchange, StockBrief[]>;
   selectedExchange = Exchange.MAL1;
+  subscription: Subscription | undefined;
   isLoading = false;
 
   constructor(private marketDataService: MarketDataService) {
@@ -21,7 +23,7 @@ export class DashboardMarketBriefComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.marketDataService
+    this.subscription = this.marketDataService
       .watch('/market-data/update')
       .subscribe((message: Message) => {
         const data = JSON.parse(message.body);
@@ -32,6 +34,9 @@ export class DashboardMarketBriefComponent implements OnInit {
       destination: '/app/market-data/initial',
       body: '',
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   private parseMarketData(data: MarketData | MarketData[]) {
