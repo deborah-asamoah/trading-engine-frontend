@@ -25,6 +25,8 @@ import { DashboardOrderBoxComponent } from './components/dashboard-order-box/das
 import { DashboardTrendBoxComponent } from './components/dashboard-trend-box/dashboard-trend-box.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MarketDataService } from './services/market-data/market-data.service';
+import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+  ],
+  providers: [
+    {
+      provide: MarketDataService,
+      useFactory: marketDataServiceFactory,
+    },
   ],
 })
 export class ClientModule {

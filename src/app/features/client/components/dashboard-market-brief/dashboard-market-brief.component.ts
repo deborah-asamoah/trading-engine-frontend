@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import StockBrief from '../../models/stock-brief.model';
+import { MarketDataService } from '../../services/market-data/market-data.service';
+import { Message } from '@stomp/stompjs';
+import { Exchange } from 'src/app/core/models/exchange.enum';
+import MarketData from '../../models/market-data.model';
 
 @Component({
   selector: 'app-dashboard-market-brief',
@@ -7,18 +11,56 @@ import StockBrief from '../../models/stock-brief.model';
   styleUrls: ['./dashboard-market-brief.component.scss'],
 })
 export class DashboardMarketBriefComponent implements OnInit {
-  stockBriefList: StockBrief[] = [];
+  marketData: Map<Exchange, StockBrief[]>;
+  selectedExchange = Exchange.MAL1;
+  isLoading = false;
+
+  constructor(private marketDataService: MarketDataService) {
+    this.marketData = new Map();
+  }
 
   ngOnInit(): void {
-    this.stockBriefList = [
-      new StockBrief('GOOGL', 22.5, 22.7, 0.5, 22.1, 3.5),
-      new StockBrief('AAPL', 22.5, 22.7, 0.5, 22.1, -4.5),
-      new StockBrief('AMZN', 22.5, 22.7, 0.5, 22.1, 1.5),
-      new StockBrief('IBM', 22.5, 22.7, 0.5, 22.1, 4.5),
-    ];
+    this.isLoading = true;
+    this.marketDataService
+      .watch('/market-data/update')
+      .subscribe((message: Message) => {
+        const data = JSON.parse(message.body);
+        this.parseMarketData(data);
+        this.isLoading = false;
+      });
+    this.marketDataService.publish({
+      destination: '/app/market-data/initial',
+      body: '',
+    });
+  }
+
+  private parseMarketData(data: MarketData | MarketData[]) {
+    if (Array.isArray(data)) {
+      (data as MarketData[]).forEach((item) => {
+        this.marketData.set(
+          item.exchange,
+          StockBrief.parseMarketData(item.marketDataCaches)
+        );
+      });
+      return;
+    }
+    this.marketData.set(
+      data.exchange,
+      StockBrief.parseMarketData(data.marketDataCaches)
+    );
   }
 
   onSortMarketBrief(e: Event) {
     console.log((<HTMLSelectElement>e.target).value);
+  }
+  onSelectExchange(e: Event) {
+    switch ((<HTMLSelectElement>e.target).value) {
+      case Exchange.MAL1:
+        this.selectedExchange = Exchange.MAL1;
+        break;
+      case Exchange.MAL2:
+        this.selectedExchange = Exchange.MAL2;
+        break;
+    }
   }
 }

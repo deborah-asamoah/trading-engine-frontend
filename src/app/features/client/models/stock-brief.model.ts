@@ -1,3 +1,5 @@
+import { MarketDataCache } from './market-data.model';
+
 class StockBrief {
   public name: string;
   public bidPrice: number;
@@ -20,6 +22,19 @@ class StockBrief {
     this.maxPriceShift = maxPriceShift;
     this.lastTradedPrice = lastTradedPrice;
     this.trend = trend;
+  }
+
+  static parseMarketData(marketData: MarketDataCache[]) {
+    return marketData.map((cache) => {
+      return new StockBrief(
+        cache.product,
+        cache.bidPrice,
+        cache.askPrice,
+        cache.maxPriceShift,
+        cache.lastTradedPrice,
+        0
+      );
+    });
   }
 }
 
