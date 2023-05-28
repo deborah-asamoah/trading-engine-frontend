@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import Order, { OrderSide, OrderType } from 'src/app/core/models/order.model';
+import { OrderSide, OrderType } from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
 import { ClientDataService } from 'src/app/shared/services/client-data.service';
 
@@ -32,7 +32,6 @@ export class DashboardOrderBoxComponent implements OnInit {
   constructor(private clientDataService: ClientDataService) {
     this.portfolios = clientDataService.portfolios;
   }
-
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -77,25 +76,21 @@ export class DashboardOrderBoxComponent implements OnInit {
     return this.formGroup.get('quantity')!;
   }
 
-
   get product() {
-    return this.formGroup.get("product")!;
+    return this.formGroup.get('product')!;
   }
 
   get type() {
-    return this.formGroup.get("type")!;
+    return this.formGroup.get('type')!;
   }
-
 
   get side() {
-    return this.formGroup.get("side")!;
+    return this.formGroup.get('side')!;
   }
-
 
   get portfolioId() {
-    return this.formGroup.get("portfolioId")!;
+    return this.formGroup.get('portfolioId')!;
   }
-  
 
   onSubmit(event: Event) {
     const form = <HTMLFormElement>event.target;
@@ -105,37 +100,33 @@ export class DashboardOrderBoxComponent implements OnInit {
       return;
     }
 
-    this.clientDataService.createOrder(this.formGroup.value).subscribe((value) => console.log(value));
+    this.clientDataService
+      .createOrder(this.formGroup.value)
+      .subscribe((value) => console.log(value));
     form.reset();
   }
 
-
   onProductChange() {
-    this.product.value
+    this.product.value;
   }
-
 
   onPriceChange() {
-    this.price.value
+    this.price.value;
   }
 
-
   onTypeChange() {
-    this.type.value
+    this.type.value;
   }
 
   onSideChange() {
-    this.side.value
+    this.side.value;
   }
 
   onQuantityChange() {
-    this.quantity.value
+    this.quantity.value;
   }
 
   onPortfolioChange() {
-    this.portfolioId.value
+    this.portfolioId.value;
   }
-
-
-
 }

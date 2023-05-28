@@ -1,3 +1,8 @@
 .base__sub {
   background-color: var(--color-background-white);
 }
+
+main section {
+  overflow-y: scroll;
+  height: 100vh;
+}
