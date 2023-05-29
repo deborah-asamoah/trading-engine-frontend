@@ -1,17 +1,24 @@
 <section class="dashboard__market-brief card rounded-4">
   <div class="dashboard__market-brief__header">
     <span>Market brief</span>
-    <select (change)="onSortMarketBrief($event)" class="form-select form-select-lg" aria-label="Default select example">
-      <option selected disabled value="">Sort</option>
-      <option value="stock">Stock</option>
-      <option value="bid">Bid Price</option>
-      <option value="ask">Ask Price</option>
-      <option value="shift">Max Price Shift</option>
-      <option value="traded">Last Traded Price</option>
-      <option value="trend">Trend</option>
-    </select>
+    <div class="dashboard__market-brief__selectors">
+      <select (change)="onSelectExchange($event)" class="form-select form-select-lg" aria-label="Select exchange">
+        <option selected value="MAL1">Exchange 1</option>
+        <option value="MAL2">Exchange 2</option>
+      </select>
+      <select (change)="onSortMarketBrief($event)" class="form-select form-select-lg" aria-label="Sort data">
+        <option selected disabled value="">Sort</option>
+        <option value="stock">Stock</option>
+        <option value="bid">Bid Price</option>
+        <option value="ask">Ask Price</option>
+        <option value="shift">Max Price Shift</option>
+        <option value="traded">Last Traded Price</option>
+        <option value="trend">Trend</option>
+      </select>
+    </div>
   </div>
-  <div class="table-responsive">
+  <app-pulse-loader class="dashboard__market-brief__loader" *ngIf="isLoading"></app-pulse-loader>
+  <div *ngIf="!isLoading" class="table-responsive">
     <table class="table table-hover dashboard__market-brief__table">
       <thead class="dashboard__market-brief__table__head">
         <tr>
@@ -25,7 +32,7 @@
         </tr>
       </thead>
       <tbody class="dashboard__market-brief__table__body">
-        <tr *ngFor="let stock of stockBriefList; let i = index">
+        <tr *ngFor="let stock of marketData.get(selectedExchange); let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ stock.name }}</td>
           <td>{{ stock.bidPrice }}</td>
