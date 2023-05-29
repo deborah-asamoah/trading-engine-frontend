@@ -1,9 +1,17 @@
 import { MarketDataService } from './market-data.service';
 import { RxStompConfig } from '@stomp/rx-stomp';
 
+export const marketDataUrls = {
+  connect: 'ws://localhost:8080/market-data/subscribe',
+  marketDataTopic: '/market-data/update',
+  orderBookTopic: '/orderbook/update',
+  initialMarketDataTopic: '/app/market-data/initial',
+  initialOrderBookTopic: '/app/orderbook/initial',
+};
+
 const marketDataStompConfig: RxStompConfig = {
   // Which server?
-  brokerURL: 'ws://localhost:8080/market-data/subscribe',
+  brokerURL: marketDataUrls.connect,
 
   // How often to heartbeat?
   // Interval in milliseconds, set to 0 to disable

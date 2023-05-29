@@ -5,6 +5,7 @@ import { Message } from '@stomp/stompjs';
 import { Exchange } from 'src/app/core/models/exchange.enum';
 import MarketData from '../../models/market-data.model';
 import { Subscription } from 'rxjs';
+import { marketDataUrls } from '../../services/market-data/market-data-service-factory';
 
 @Component({
   selector: 'app-dashboard-market-brief',
@@ -24,14 +25,14 @@ export class DashboardMarketBriefComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoading = true;
     this.subscription = this.marketDataService
-      .watch('/market-data/update')
+      .watch(marketDataUrls.marketDataTopic)
       .subscribe((message: Message) => {
         const data = JSON.parse(message.body);
         this.parseMarketData(data);
         this.isLoading = false;
       });
     this.marketDataService.publish({
-      destination: '/app/market-data/initial',
+      destination: marketDataUrls.initialMarketDataTopic,
       body: '',
     });
   }
