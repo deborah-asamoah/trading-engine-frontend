@@ -9,6 +9,8 @@ import { ClientDataService } from 'src/app/shared/services/client-data.service';
 })
 export class DashboardComponent implements OnInit {
   client!: Client;
+  balance = 150.0;
+
   constructor(private clientDataService: ClientDataService) {}
 
   ngOnInit(): void {

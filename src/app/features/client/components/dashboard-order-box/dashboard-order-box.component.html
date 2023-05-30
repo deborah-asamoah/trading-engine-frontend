@@ -1,67 +1,79 @@
-<section class="dashboard__order-box card rounded-4">
+<div class="dashboard__order-box">
   <form (ngSubmit)="onSubmit($event)" class="form" [formGroup]="formGroup" novalidate>
-    <!-- stock -->
-    <div class="form-group">
-      <label for="product" class="form-label">Stock</label>
-      <select class="form-select form-select-lg" id="product" required formControlName="product" (change)="onProductChange()"  >
-        <option selected disabled value="">Select stock</option>
-        <option *ngFor="let product of productList" value="{{ product }}">
-          {{ product }}
-        </option>
-      </select>
-      <div class="invalid-feedback">Please select a stock</div>
+    <div class="modal-header dashboard__order-box__header">
+      <h4 class="modal-title">Place Order</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal?.dismiss('Cross click')"></button>
     </div>
-    <!-- price -->
-    <div class="form-group">
-      <label for="price" class="form-label">Price</label>
-      <input [ngClass]="price.invalid && (price.dirty || price.touched) ? 'is-invalid' : ''" type="number"
-        formControlName="price" id="price" class="form-control" placeholder="$99.99" required min="1" (change)="onPriceChange()" />
-      <div class="invalid-feedback">Please enter a valid price</div>
-    </div>
-    <!-- type -->
-    <div class="form-group">
-      <label for="type" class="form-label">Order type</label>
-      <select class="form-select form-select-lg" id="type" required formControlName="type" (change)="onTypeChange()">
-        <option selected disabled value="">Select type</option>
-        <option *ngFor="let type of orderTypes" value="{{ type }}">
-          {{ type }}
-        </option>
-      </select>
-      <div class="invalid-feedback">Please select an order type</div>
-    </div>
-    <!-- quantity -->
-    <div class="form-group">
-      <label for="quantity" class="form-label">Quantity</label>
-      <input [ngClass]="quantity.invalid && (quantity.dirty || quantity.touched) ? 'is-invalid' : ''" type="number"
-        formControlName="quantity" id="quantity" class="form-control" placeholder="100" required min="1" (change)="onQuantityChange()" />
-      <div class="invalid-feedback">Please enter a valid quantity</div>
-    </div>
-    <!-- side -->
-    <div class="form-group">
-      <label for="side" class="form-label">Order side</label>
-      <select class="form-select form-select-lg" id="side" required formControlName="side" (change)="onSideChange()">
-        <option selected disabled value="">Select side</option>
-        <option *ngFor="let side of orderSides" value="{{ side }}">
-          {{ side }}
-        </option>
-      </select>
-      <div class="invalid-feedback">Please select an order side</div>
-    </div>
-    <!-- portfolio -->
-    <div class="form-group">
-      <label for="portfolio" class="form-label">Portfolio</label>
-      <select class="form-select form-select-lg" id="portfolio" required formControlName="portfolioId" (change)="onPortfolioChange()">
-        <option selected disabled value="">Select portfolio</option>
-        <option *ngFor="let portfolio of portfolios" value="{{ portfolio.id }}">
-          {{ portfolio.name }}
-        </option>
-      </select>
-      <div class="invalid-feedback">Please select a portfolio</div>
+    <div class="modal-body">
+      <!-- stock -->
+      <div class="form-group">
+        <label for="product" class="form-label">Stock</label>
+        <select class="form-select form-select-lg" id="product" required formControlName="product"
+          (change)="onProductChange()">
+          <option selected disabled value="">Select stock</option>
+          <option *ngFor="let product of productList" value="{{ product }}">
+            {{ product }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select a stock</div>
+      </div>
+      <!-- price -->
+      <div class="form-group">
+        <label for="price" class="form-label">Price</label>
+        <input [ngClass]="price.invalid && (price.dirty || price.touched) ? 'is-invalid' : ''" type="number"
+          formControlName="price" id="price" class="form-control" placeholder="$99.99" required min="1"
+          (change)="onPriceChange()" />
+        <div class="invalid-feedback">Please enter a valid price</div>
+      </div>
+      <!-- type -->
+      <div class="form-group">
+        <label for="type" class="form-label">Order type</label>
+        <select class="form-select form-select-lg" id="type" required formControlName="type" (change)="onTypeChange()">
+          <option selected disabled value="">Select type</option>
+          <option *ngFor="let type of orderTypes" value="{{ type }}">
+            {{ type }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select an order type</div>
+      </div>
+      <!-- quantity -->
+      <div class="form-group">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input [ngClass]="quantity.invalid && (quantity.dirty || quantity.touched) ? 'is-invalid' : ''" type="number"
+          formControlName="quantity" id="quantity" class="form-control" placeholder="100" required min="1"
+          (change)="onQuantityChange()" />
+        <div class="invalid-feedback">Please enter a valid quantity</div>
+      </div>
+      <!-- side -->
+      <div class="form-group">
+        <label for="side" class="form-label">Order side</label>
+        <select class="form-select form-select-lg" id="side" required formControlName="side" (change)="onSideChange()">
+          <option selected disabled value="">Select side</option>
+          <option *ngFor="let side of orderSides" value="{{ side }}">
+            {{ side }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select an order side</div>
+      </div>
+      <!-- portfolio -->
+      <div class="form-group">
+        <label for="portfolio" class="form-label">Portfolio</label>
+        <select class="form-select form-select-lg" id="portfolio" required formControlName="portfolioId"
+          (change)="onPortfolioChange()">
+          <option selected disabled value="">Select portfolio</option>
+          <option *ngFor="let portfolio of portfolios" value="{{ portfolio.id }}">
+            {{ portfolio.name }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select a portfolio</div>
+      </div>
     </div>
     <!-- Button row -->
-    <div class="form-group dashboard__order-box__button-row">
-      <app-button type="reset" text="Cancel" color="red"></app-button>
-      <app-button text="Submit" color="green"></app-button>
+    <div class="modal-footer">
+      <div class="form-group dashboard__order-box__button-row">
+        <app-button type="reset" text="Clear" color="red"></app-button>
+        <app-button text="Submit" color="green"></app-button>
+      </div>
     </div>
   </form>
-</section>
+</div>

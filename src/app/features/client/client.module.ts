@@ -22,11 +22,12 @@ import {
 import { DashboardHeadingComponent } from './components/dashboard-heading/dashboard-heading.component';
 import { DashboardMarketBriefComponent } from './components/dashboard-market-brief/dashboard-market-brief.component';
 import { DashboardOrderBoxComponent } from './components/dashboard-order-box/dashboard-order-box.component';
-import { DashboardTrendBoxComponent } from './components/dashboard-trend-box/dashboard-trend-box.component';
+import { DashboardOpenOrdersComponent } from './components/dashboard-open-orders/dashboard-open-orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
+import { DashboardGraphComponent } from './components/dashboard-graph/dashboard-graph.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import marketDataServiceFactory from './services/market-data/market-data-service
     DashboardHeadingComponent,
     DashboardMarketBriefComponent,
     DashboardOrderBoxComponent,
-    DashboardTrendBoxComponent,
+    DashboardOpenOrdersComponent,
+    DashboardGraphComponent,
   ],
   imports: [
     CommonModule,
