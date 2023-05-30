@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem;
     font-size: 2rem;
 
     @media only screen and (max-width: 41.25em) {
@@ -33,12 +33,15 @@
     & td,
     & th {
       text-align: center;
-      padding: 1.2rem 0;
+      padding: .8rem 0;
+    }
+    & tr:nth-child(even) {
+      background-color: var(--color-grey-white);
     }
     &__head {
       font-size: 1.5rem;
       font-weight: 400;
-      background-color: var(--color-grey-white);
+      border-bottom: 1px solid rgba(#000,.1);
 
       & th {
         text-align: center;
