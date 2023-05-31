@@ -2,7 +2,8 @@
   <ng-template #orderBox let-modal>
     <app-dashboard-order-box [modal]="modal"></app-dashboard-order-box>
   </ng-template>
-  <app-dashboard-heading class="dashboard__heading" [balance]="balance" [element]="orderBox"
+  <app-button [onClick]="boundOpenOrderBoxModal" class="dashboard__place-order" text="ORDER" color="green"></app-button>
+  <app-dashboard-heading class="dashboard__heading" [balance]="balance"
     [username]="client.username"></app-dashboard-heading>
   <app-dashboard-market-brief class="dashboard__market-brief"></app-dashboard-market-brief>
   <app-dashboard-graph class="dashboard__graph"></app-dashboard-graph>

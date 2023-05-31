@@ -9,16 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DashboardHeadingComponent {
   @Input() username = '';
-  @Input() element!: TemplateRef<NgTemplateOutlet>;
   @Input() balance = 0.0;
-  boundOpenOrderBoxModal = this.openOrderBoxModal.bind(this);
 
-  constructor(private modalService: NgbModal) {}
-
-  openOrderBoxModal() {
-    this.modalService.open(this.element, {
-      centered: true,
-      scrollable: true,
-    });
-  }
+  constructor() {}
 }
