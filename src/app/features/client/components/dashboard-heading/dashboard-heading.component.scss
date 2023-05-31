@@ -5,6 +5,11 @@
 
   &__balance {
     margin-right: 12rem;
+    padding: 0.5rem 2rem;
+
+    & p {
+      font-size: 2rem;
+    }
   }
   &__place-order {
     position: absolute;
