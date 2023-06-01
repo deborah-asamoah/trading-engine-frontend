@@ -1,12 +1,12 @@
 import { MarketDataService } from './market-data.service';
 import { RxStompConfig } from '@stomp/rx-stomp';
+import { environment } from 'src/environments/environment';
 
 export const marketDataUrls = {
-  connect: 'ws://localhost:8080/market-data/subscribe',
+  connect: `${environment.marketBaseUrl}/market-data/subscribe`,
   marketDataTopic: '/market-data/update',
-  orderBookTopic: '/orderbook/update',
+  orderBookTopic: '/order-book/update',
   initialMarketDataTopic: '/app/market-data/initial',
-  initialOrderBookTopic: '/app/orderbook/initial',
 };
 
 const marketDataStompConfig: RxStompConfig = {

@@ -28,10 +28,6 @@ export class DashboardOpenOrdersComponent implements OnInit {
       .subscribe((message: Message) => {
         console.log(message.body);
       });
-    this.marketDataService.publish({
-      destination: marketDataUrls.initialOrderBookTopic,
-      body: '',
-    });
   }
 
   onOrderSideSelected(side: string) {

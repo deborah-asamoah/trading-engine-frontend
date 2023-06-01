@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import Client from 'src/app/core/models/client.model';
 import Order from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientDataService {
-  private BASE_URL = 'http://localhost:8080/api/v1';
   private _client: Client;
   private _portfolios: Portfolio[];
 
@@ -30,6 +30,6 @@ export class ClientDataService {
 
   createOrder(order: Order) {
     order.portfolioId = Number(order.portfolioId);
-    return this.http.post(`${this.BASE_URL}/orders/create`, order);
+    return this.http.post(environment.ordersBaseUrl, order);
   }
 }
