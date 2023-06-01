@@ -1,11 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Client from 'src/app/core/models/client.model';
 import { ClientDataService } from 'src/app/shared/services/client-data.service';

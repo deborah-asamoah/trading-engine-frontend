@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '@stomp/stompjs';
-import { MarketDataService } from '../../services/market-data/market-data.service';
-import { marketDataUrls } from '../../services/market-data/market-data-service-factory';
+import { marketDataUrls } from '../../../services/market-data/market-data-service-factory';
+import { MarketDataService } from '../../../services/market-data/market-data.service';
 
 @Component({
   selector: 'app-dashboard-open-orders',
