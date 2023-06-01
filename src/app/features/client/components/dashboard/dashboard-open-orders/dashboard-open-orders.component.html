@@ -22,8 +22,10 @@
             </option>
         </select>
     </div>
+    <app-no-data class="dashboard__open-orders__no-data" *ngIf="selectedProduct.length == 0"
+        text="Select a product"></app-no-data>
     <app-no-data class="dashboard__open-orders__no-data"
-        *ngIf="selectedProduct.length == 0 || filteredOrders.length == 0"></app-no-data>
+        *ngIf="filteredOrders.length == 0 && selectedProduct.length > 0"></app-no-data>
     <div *ngIf="selectedProduct.length > 0 && filteredOrders.length > 0"
         class="dashboard__open-orders__table table-responsive">
         <table class="table table-sm table-borderless table-hover">

@@ -27,6 +27,7 @@ export class DashboardOpenOrdersComponent implements OnInit {
   selectedProduct: string = '';
   selectedOrderSide: OrderSide = OrderSide.BUY;
   selectedExchange: Exchange = Exchange.MAL1;
+  filteredOrders: OrderBook[] = [];
 
   constructor(private marketDataService: MarketDataService) {
     this.orderBooks = new Map();
@@ -76,12 +77,13 @@ export class DashboardOpenOrdersComponent implements OnInit {
     return exchangeSpecificMap;
   }
 
-  public get filteredOrders(): OrderBook[] {
+  private filterOrders() {
     const orders = this.orderBooks
       .get(this.selectedProduct)
       ?.get(this.selectedExchange);
-    if (!orders) return [];
-    return orders;
+    this.filteredOrders =
+      orders?.filter((orders) => orders.orderSide === this.selectedOrderSide) ??
+      [];
   }
 
   onOrderSideSelected(side: string) {
@@ -93,9 +95,11 @@ export class DashboardOpenOrdersComponent implements OnInit {
         this.selectedOrderSide = OrderSide.SELL;
         break;
     }
+    this.filterOrders();
   }
   onProductSelected(event: Event) {
     this.selectedProduct = (<HTMLSelectElement>event.target).value;
+    this.filterOrders();
   }
   onExchangeSelected(event: Event) {
     const selectedOption = (<HTMLSelectElement>event.target).value;
@@ -107,5 +111,6 @@ export class DashboardOpenOrdersComponent implements OnInit {
         this.selectedExchange = Exchange.MAL2;
         break;
     }
+    this.filterOrders();
   }
 }
