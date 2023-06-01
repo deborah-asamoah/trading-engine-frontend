@@ -7,6 +7,7 @@ export const marketDataUrls = {
   marketDataTopic: '/market-data/update',
   orderBookTopic: '/order-book/update',
   initialMarketDataTopic: '/app/market-data/initial',
+  initialOrderBookTopic: '/app/order-book/initial',
 };
 
 const marketDataStompConfig: RxStompConfig = {

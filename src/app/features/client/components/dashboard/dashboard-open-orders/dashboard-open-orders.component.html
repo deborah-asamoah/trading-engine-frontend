@@ -15,7 +15,8 @@
             <option *ngFor="let product of products" [value]="product">{{ product }}</option>
         </select>
     </div>
-    <div class="dashboard__open-orders__table">
+    <app-no-data class="dashboard__open-orders__no-data" *ngIf="selectedProduct.length == 0"></app-no-data>
+    <div *ngIf="selectedProduct.length > 0" class="dashboard__open-orders__table">
         <table>
             <thead>
                 <tr>
