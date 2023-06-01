@@ -3,7 +3,7 @@ import StockBrief from '../../models/stock-brief.model';
 import { MarketDataService } from '../../services/market-data/market-data.service';
 import { Message } from '@stomp/stompjs';
 import { Exchange } from 'src/app/core/models/exchange.enum';
-import MarketData from '../../models/market-data.model';
+import MarketData, { MarketDataCache } from '../../models/market-data.model';
 import { Subscription } from 'rxjs';
 import { marketDataUrls } from '../../services/market-data/market-data-service-factory';
 
@@ -43,16 +43,22 @@ export class DashboardMarketBriefComponent implements OnInit, OnDestroy {
   private parseMarketData(data: MarketData | MarketData[]) {
     if (Array.isArray(data)) {
       (data as MarketData[]).forEach((item) => {
+        let marketDataCacheMap: Map<string, MarketDataCache> = new Map(
+          Object.entries(item.marketDataCaches)
+        );
         this.marketData.set(
           item.exchange,
-          StockBrief.parseMarketData(item.marketDataCaches)
+          StockBrief.parseMarketData(marketDataCacheMap)
         );
       });
       return;
     }
+    let marketDataCacheMap: Map<string, MarketDataCache> = new Map(
+      Object.entries(data.marketDataCaches)
+    );
     this.marketData.set(
       data.exchange,
-      StockBrief.parseMarketData(data.marketDataCaches)
+      StockBrief.parseMarketData(marketDataCacheMap)
     );
   }
 
