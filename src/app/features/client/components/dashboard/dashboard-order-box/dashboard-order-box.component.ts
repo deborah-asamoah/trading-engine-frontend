@@ -63,7 +63,7 @@ export class DashboardOrderBoxComponent implements OnInit {
         validators: Validators.compose([Validators.required]),
         updateOn: 'submit',
       }),
-      portfolioId: new FormControl<number | null>(0, {
+      portfolioId: new FormControl<string | null>('', {
         validators: Validators.compose([Validators.required]),
         updateOn: 'submit',
       }),

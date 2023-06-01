@@ -15,9 +15,9 @@ export class ClientDataService {
   constructor(private http: HttpClient) {
     this._client = new Client('gerald-tetteh');
     this._portfolios = [
-      new Portfolio(1, 'High Worth'),
-      new Portfolio(2, 'Skeptical'),
-      new Portfolio(3, 'Low Worth'),
+      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'High Worth'),
+      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'Skeptical'),
+      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'Low Worth'),
     ];
   }
 
@@ -29,7 +29,7 @@ export class ClientDataService {
   }
 
   createOrder(order: Order) {
-    order.portfolioId = Number(order.portfolioId);
+    // order.portfolioId = Number(order.portfolioId);
     return this.http.post(environment.ordersBaseUrl, order);
   }
 }

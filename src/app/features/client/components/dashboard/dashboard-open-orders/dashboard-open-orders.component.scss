@@ -16,6 +16,11 @@
   }
   &__selector {
     margin-top: 1rem;
+    display: flex;
+
+    & select {
+      margin: 0 .2rem;
+    }
   }
   &__no-data {
     margin: 0 auto;
