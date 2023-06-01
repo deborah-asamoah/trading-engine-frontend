@@ -23,7 +23,7 @@ export class DashboardOpenOrdersComponent implements OnInit {
     'ORCL',
     'AMZN',
   ];
-  orderBooks: Map<String, OrderBook[]>;
+  orderBooks: Map<String, Map<Exchange, OrderBook[]>>;
   selectedProduct: string = '';
   selectedOrderSide: OrderSide = OrderSide.BUY;
   selectedExchange: Exchange = Exchange.MAL1;
@@ -47,22 +47,41 @@ export class DashboardOpenOrdersComponent implements OnInit {
   private parseOrderBooks(data: OrderBookInput | OrderBookInput[]) {
     if (Array.isArray(data)) {
       data.forEach((item) => {
-        this.orderBooks.set(item.product, item.orderBookList);
+        this.orderBooks.set(
+          item.product,
+          this.groupByExchange(item.orderBookList)
+        );
       });
       return;
     }
-    this.orderBooks.set(data.product, data.orderBookList);
+    const productExchangeOrderMap =
+      this.orderBooks.get(data.product) ?? new Map();
+    productExchangeOrderMap.set(data.exchange, data.orderBookList);
+    this.orderBooks.set(data.product, productExchangeOrderMap);
+  }
+
+  private groupByExchange(orderBookList: OrderBook[]) {
+    const firstExchangeData: OrderBook[] = [];
+    const secondExchangeData: OrderBook[] = [];
+    const exchangeSpecificMap = new Map();
+    orderBookList.forEach((orderBook) => {
+      if (orderBook.exchange === Exchange.MAL1) {
+        firstExchangeData.push(orderBook);
+      } else {
+        secondExchangeData.push(orderBook);
+      }
+    });
+    exchangeSpecificMap.set(Exchange.MAL1, firstExchangeData);
+    exchangeSpecificMap.set(Exchange.MAL2, secondExchangeData);
+    return exchangeSpecificMap;
   }
 
   public get filteredOrders(): OrderBook[] {
-    const book = this.orderBooks.get(this.selectedProduct);
-    console.log(book);
-    if (!book) return [];
-    return book.filter(
-      (book) =>
-        book.orderSide === this.selectedOrderSide &&
-        book.exchange == this.selectedExchange
-    );
+    const orders = this.orderBooks
+      .get(this.selectedProduct)
+      ?.get(this.selectedExchange);
+    if (!orders) return [];
+    return orders;
   }
 
   onOrderSideSelected(side: string) {
