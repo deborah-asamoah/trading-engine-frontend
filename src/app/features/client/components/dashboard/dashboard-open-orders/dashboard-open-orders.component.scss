@@ -1,0 +1,29 @@
+.dashboard__open-orders {
+  max-height: 53.075rem;
+  height: 100%;
+  padding: 1.2rem;
+  overflow-y: auto;
+
+  &__button-row {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+
+    & label {
+      font-size: 1.4rem;
+    }
+  }
+  &__selector {
+    margin-top: 1rem;
+    display: flex;
+
+    & select {
+      margin: 0 .2rem;
+    }
+  }
+  &__no-data {
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+}

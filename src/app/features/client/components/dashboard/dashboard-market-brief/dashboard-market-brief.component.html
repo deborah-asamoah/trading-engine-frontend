@@ -1,6 +1,6 @@
 <section class="dashboard__market-brief card rounded-4">
   <div class="dashboard__market-brief__header">
-    <span>Market brief</span>
+    <span class="display-6">Market brief</span>
     <div class="dashboard__market-brief__selectors">
       <select (change)="onSelectExchange($event)" class="form-select form-select-lg" aria-label="Select exchange">
         <option selected value="MAL1">Exchange 1</option>
@@ -19,7 +19,7 @@
   </div>
   <app-pulse-loader class="dashboard__market-brief__loader" *ngIf="isLoading"></app-pulse-loader>
   <div *ngIf="!isLoading" class="table-responsive">
-    <table class="table table-hover dashboard__market-brief__table">
+    <table class="table table-sm table-borderless table-hover dashboard__market-brief__table">
       <thead class="dashboard__market-brief__table__head">
         <tr>
           <th scope="col">#</th>

@@ -1,6 +1,11 @@
 <div class="dashboard container-lg">
-  <app-dashboard-heading class="dashboard__heading" [username]="client.username"></app-dashboard-heading>
+  <ng-template #orderBox let-modal>
+    <app-dashboard-order-box [modal]="modal"></app-dashboard-order-box>
+  </ng-template>
+  <app-button [onClick]="boundOpenOrderBoxModal" class="dashboard__place-order" text="ORDER" color="green"></app-button>
+  <app-dashboard-heading class="dashboard__heading" [balance]="balance"
+    [username]="client.username"></app-dashboard-heading>
   <app-dashboard-market-brief class="dashboard__market-brief"></app-dashboard-market-brief>
-  <app-dashboard-order-box class="dashboard__order-box"></app-dashboard-order-box>
-  <app-dashboard-trend-box class="dashboard__trend-box"></app-dashboard-trend-box>
+  <app-dashboard-graph class="dashboard__graph"></app-dashboard-graph>
+  <app-dashboard-open-orders class="dashboard__open-orders"></app-dashboard-open-orders>
 </div>

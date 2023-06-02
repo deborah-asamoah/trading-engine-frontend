@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard-heading',
@@ -7,4 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class DashboardHeadingComponent {
   @Input() username = '';
+  @Input() balance = 0.0;
+
+  constructor() {}
 }

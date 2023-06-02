@@ -1,6 +1,16 @@
 .dashboard__order-box {
-  padding: 1rem;
 
+  & .modal-body {
+    padding: 1rem 2rem;
+  }
+  &__header {
+    padding: 2rem 3rem;
+
+    & h4 {
+      font-weight: 400;
+      font-size: 2rem;
+    }
+  }
   & .form {
     &-label {
       font-size: 1.4rem;

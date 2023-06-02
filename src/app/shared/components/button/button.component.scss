@@ -1,5 +1,6 @@
 .button {
-    padding: .5rem 4rem;
+    padding: .5rem 3.7rem;
+    margin: 0 .3rem;
     transition: all .3s;
 
     &--green, &--green:active {
@@ -12,7 +13,7 @@
     }
     &:hover {
         transform: translateY(-.3rem);
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px, rgba(0, 0, 0, 0.22) 0px 8px 8px;
     }
     &:active {
         transform: translateY(0rem);
