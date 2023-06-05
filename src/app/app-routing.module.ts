@@ -9,9 +9,7 @@ import { LoginComponent } from './features/auth/components/login/login.component
 const routes: Routes = [
   {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
   {title: 'Login - JDG Trading', path: 'auth/login', component: LoginComponent, },
-  {title: 'Register - JDG Trading', path: 'auth/register', component: RegisterComponent, },
-  { title: 'JDG Trading', path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  { title: 'JDG Trading', path: 'client', component: DashboardComponent, canActivate: [AuthGuard]}
+  {title: 'Register - JDG Trading', path: 'auth/register', component: RegisterComponent, }
 ];
 
 @NgModule({

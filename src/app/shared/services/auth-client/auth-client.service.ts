@@ -33,29 +33,17 @@ export class AuthClientService {
     .post(`${this.BASE_URL}/login`, login)
     .subscribe((res: any) => {
       this.setToken(res.accessToken);
-      this.location.replaceState('/client/dashboard');
+      // this.location.replaceState('/client/dashboard');
       this.router.navigate(['client/dashboard']);
     })
-  }
-
-  refresh(refreshToken: string): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/refresh`, { refreshToken });
   }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  setRefreshToken(refreshToken: string) {
-    localStorage.setItem('refreshToken', refreshToken);
-  }
-
   getToken() {
     return localStorage.getItem('token');
-  }
-
-  getRefreshToken() {
-    return localStorage.getItem('refreshToken');
   }
 
   removeToken() {
@@ -69,23 +57,9 @@ export class AuthClientService {
 
   doLogout() {
     let removeToken = localStorage.removeItem('token');
-    console.log("one")
     if (removeToken == null) {
       this.router.navigate(['auth/login']);
-      console.log("two")
     }
   }
-
-  // handleError(error: HttpErrorResponse) {
-  //   let msg = '';
-  //   if (error.error instanceof ErrorEvent) {
-  //     // client-side error
-  //     msg = error.error.message;
-  //   } else {
-  //     // server-side error
-  //     msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-  //   }
-  //   return throwError(msg);
-  // }
 
 }

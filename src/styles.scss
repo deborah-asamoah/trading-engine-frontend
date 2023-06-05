@@ -43,6 +43,7 @@ body {
   text-rendering: optimizeSpeed;
   font-size: 1.6rem;
   font-family: var(--font-roboto);
+  overflow: hidden;
 }
 
 /* make images easier to work with */
@@ -78,5 +79,50 @@ a:link {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+.card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+select {
+  padding: 1rem !important;
+  font-size: 1.5rem !important;
+}
+table {
+  & tr:nth-child(even) {
+    background-color: var(--color-grey-white);
+  }
+  & td {
+    text-align: center;
+    padding: 0.8rem 0 !important;
+  }
+  & thead {
+    font-size: 1.5rem;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(#000, 0.1);
+
+    & th {
+      text-align: center;
+      padding: 1.6rem 3rem !important;
+    }
+  }
+  & tbody th {
+    text-align: center;
+  }
+}
+.form {
+  &-label {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  &-select, &-control {
+    font-size: 1.5rem;
+  }
+  &-group {
+    margin-bottom: 1.5rem;
   }
 }
