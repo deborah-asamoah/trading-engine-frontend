@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import Login from 'src/app/core/models/login.model';
 import RegisterClient from 'src/app/core/models/registerclient.model';
 
@@ -11,7 +12,11 @@ import RegisterClient from 'src/app/core/models/registerclient.model';
 export class AuthClientService {
   private BASE_URL = 'http://localhost:8083/api/auth';
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    public router: Router,
+    public location: Location
+    ) { }
 
 
   registerClient(registerClient: RegisterClient) {
@@ -28,6 +33,7 @@ export class AuthClientService {
     .post(`${this.BASE_URL}/login`, login)
     .subscribe((res: any) => {
       this.setToken(res.accessToken);
+      this.location.replaceState('/client/dashboard');
       this.router.navigate(['client/dashboard']);
     })
   }

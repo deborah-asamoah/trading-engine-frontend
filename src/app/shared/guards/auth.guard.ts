@@ -19,29 +19,29 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
 
-    const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refreshToken');
+    // const token = localStorage.getItem('token');
+    // const refreshToken = localStorage.getItem('refreshToken');
 
 
     if (this.authClientService.isLoggedIn !== true) {
       window.alert("Access not allowed");
       this.router.navigate(['auth/login'])
     } 
-    else if (refreshToken) {
-      this.authClientService.refresh(refreshToken).pipe(
-        switchMap((response) => {
-          localStorage.setItem('token', response.accessToken);
-          localStorage.setItem('refreshToken', response.refreshToken)
-          return of(true);
-        }),
-        (error) => {
-          console.log(error);
-          this.router.navigate(['auth/login']);
-          return of(false);
-        }
-      ).subscribe();
-      return false;
-    }
+    // else if (refreshToken) {
+    //   this.authClientService.refresh(refreshToken).pipe(
+    //     switchMap((response) => {
+    //       localStorage.setItem('token', response.accessToken);
+    //       localStorage.setItem('refreshToken', response.refreshToken)
+    //       return of(true);
+    //     }),
+    //     (error) => {
+    //       console.log(error);
+    //       this.router.navigate(['auth/login']);
+    //       return of(false);
+    //     }
+    //   ).subscribe();
+    //   return false;
+    // }
     return true;
   }
   
