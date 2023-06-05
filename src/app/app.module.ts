@@ -7,7 +7,8 @@ import { AdminModule } from './features/admin/admin.module';
 import { AuthModule } from './features/auth/auth.module';
 import { ClientModule } from './features/client/client.module';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptor/authconfig.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -19,7 +20,13 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     ClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

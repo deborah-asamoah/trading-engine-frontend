@@ -7,11 +7,16 @@ import { ClientDataService } from 'src/app/shared/services/client-data.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
+
+
 export class DashboardComponent implements OnInit {
+  // private unsubscriber : Subject<void> = new Subject<void>();
+
   client!: Client;
   constructor(private clientDataService: ClientDataService) {}
 
   ngOnInit(): void {
     this.client = this.clientDataService.client;
   }
+
 }

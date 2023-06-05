@@ -3,11 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthClientService } from 'src/app/shared/services/auth-client/auth-client.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
   formGroup: FormGroup | any;
   submitted = false;
 
@@ -15,13 +16,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      name: new FormControl<string>(
-        '', 
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
       email: new FormControl<string>(
         '', 
         {
@@ -37,10 +31,6 @@ export class RegisterComponent implements OnInit {
         }
       ),
     })
-  }
-
-  get name() {
-    return this.formGroup.get('name')!;
   }
 
   get email() {
@@ -59,12 +49,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log(this.formGroup.value);
-    this.authClientService.registerClient(this.formGroup.value);
+    this.authClientService.authenticateClient(this.formGroup.value);
     this.formGroup.reset();
-  }
-
-  onNameChange() {
-    this.name.value
   }
 
   onEmailChange() {

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuthClientService } from '../../../../shared/services/auth-client/auth-client.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,9 +7,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
+  constructor (private authClientService: AuthClientService) {}
+
   @Input() username = '';
 
   logout() {
     console.log('logged out');
+    this.authClientService.doLogout();
   }
 }
