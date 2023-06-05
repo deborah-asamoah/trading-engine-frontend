@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuthClientService } from 'src/app/shared/services/auth-client/auth-client.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
+  constructor (private authClientService: AuthClientService) {}
+  
   @Input() username: string = '';
   isMenuCollapsed = true;
 
   logout() {
-    console.log('log out');
+    console.log('logged out');
+    this.authClientService.doLogout();
   }
 }

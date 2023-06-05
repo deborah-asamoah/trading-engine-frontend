@@ -1,0 +1,73 @@
+<div class="main-container">
+    <div class="wrapper-container">
+        <div class="form-container">
+
+            <!-- Register form -->
+            <form (ngSubmit)="onSubmit($event)" [formGroup]="formGroup" novalidate  class="form">
+                <div class="logo">JDG</div>
+                <div class="paragraph">Register your account today</div>
+
+               <div>
+                 <!-- Name -->
+                 <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input 
+                        type="text" 
+                        formControlName="name" 
+                        id="name" 
+                        class="form-control" 
+                        placeholder="eg. Gerald"
+                        [ngClass]="name.invalid && (name.dirty || name.touched) ? 'is-invalid' : ''"
+                        required
+                        (change)="onNameChange()"
+                    />
+                    <div class="invalid-feedback">Please enter your name</div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input 
+                        type="email" 
+                        formControlName="email" 
+                        id="email" 
+                        class="form-control" 
+                        placeholder="eg. example@example.com" 
+                        [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''"
+                        required
+                        (change)="onEmailChange()"
+                    />
+                    <div class="invalid-feedback">Please enter your email</div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        formControlName="password" 
+                        id="password" 
+                        class="form-control" 
+                        placeholder="Password"
+                        [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''"
+                        required
+                        (change)="onPasswordChange()"
+                    />
+                    <div class="invalid-feedback">Please enter your password</div>
+                </div>
+               </div>
+
+               <div class="submit-container">
+                <button class="submit-button" type="submit">Register</button>
+               </div>
+
+            </form>
+
+            <div>Already have an account? 
+                <span routerLink="/auth/login">Login</span>
+            </div>
+        </div>
+
+        <div class="image-container"></div>
+    </div>
+</div>

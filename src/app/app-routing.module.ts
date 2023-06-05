@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './features/auth/components/register/register.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { DashboardComponent } from './features/client/pages/dashboard/dashboard.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
 
 const routes: Routes = [
-  { title: 'JDG Trading', path: '', component: HomeComponent },
+  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
+  {title: 'Login - JDG Trading', path: 'auth/login', component: LoginComponent, },
+  {title: 'Register - JDG Trading', path: 'auth/register', component: RegisterComponent, }
 ];
 
 @NgModule({

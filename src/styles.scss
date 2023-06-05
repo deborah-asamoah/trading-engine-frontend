@@ -114,3 +114,15 @@ table {
     text-align: center;
   }
 }
+.form {
+  &-label {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  &-select, &-control {
+    font-size: 1.5rem;
+  }
+  &-group {
+    margin-bottom: 1.5rem;
+  }
+}
