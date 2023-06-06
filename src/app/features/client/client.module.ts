@@ -28,6 +28,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/dashboard-graph.component';
+import { PortfolioHeadingComponent } from './components/portfolio/portfolio-heading/portfolio-heading.component';
+import { PortfoliosListComponent } from './components/portfolio/portfolios-list/portfolios-list.component';
+import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +45,9 @@ import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/
     DashboardOrderBoxComponent,
     DashboardOpenOrdersComponent,
     DashboardGraphComponent,
+    PortfolioHeadingComponent,
+    PortfoliosListComponent,
+    PortfoliosComponent
   ],
   imports: [
     CommonModule,

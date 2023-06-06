@@ -29,10 +29,9 @@ export class DashboardOrderBoxComponent implements OnInit {
   ];
   orderTypes: OrderType[] = [OrderType.LIMIT, OrderType.MARKET];
   orderSides: OrderSide[] = [OrderSide.BUY, OrderSide.SELL];
-  portfolios: Portfolio[];
+  portfolios: Portfolio[] = [];
 
   constructor(private clientDataService: ClientDataService) {
-    this.portfolios = clientDataService.portfolios;
   }
 
   ngOnInit(): void {
@@ -68,6 +67,12 @@ export class DashboardOrderBoxComponent implements OnInit {
         updateOn: 'submit',
       }),
     });
+
+    this.clientDataService.getPortfolios().subscribe(
+      (res) => {
+        this.portfolios = res.portfolioDTOS;
+      }
+    )
   }
 
   get price(): AbstractControl {

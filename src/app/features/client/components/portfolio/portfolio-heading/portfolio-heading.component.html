@@ -1,0 +1,16 @@
+<section class="portfolio__heading">
+    <h1 class="portfolio__heading__title">
+      View all your Portfolios
+    </h1>
+    <div class="total__balance card rounded-pill">
+      <p class="lead">
+        <span class="me-5">Total Balance:</span>
+        GH&#8373; 150.00
+      </p>
+    </div>
+
+    <ng-template #orderBox let-modal>
+        <app-dashboard-order-box [modal]="modal"></app-dashboard-order-box>
+    </ng-template>
+    <app-button [onClick]="boundOpenOrderBoxModal" class="dashboard__place-order" text="ORDER" color="green"></app-button>
+  </section>

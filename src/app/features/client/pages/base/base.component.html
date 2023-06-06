@@ -1,7 +1,7 @@
 <main class="row gx-0">
-  <app-sidebar [username]="client.username" class="col d-none d-xl-block"></app-sidebar>
+  <app-sidebar [name]="client.name" class="col d-none d-xl-block"></app-sidebar>
   <section class="col-xl-10 col-12 base__sub">
-    <app-navbar [username]="client.username"></app-navbar>
+    <app-navbar [name]="client.name"></app-navbar>
     <router-outlet></router-outlet>
   </section>
 </main>

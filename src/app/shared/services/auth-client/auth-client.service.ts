@@ -1,21 +1,25 @@
  import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import Login from 'src/app/core/models/login.model';
 import RegisterClient from 'src/app/core/models/registerclient.model';
+import { ClientDataService } from '../client-data.service';
+import Client from 'src/app/core/models/client.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthClientService {
   private BASE_URL = 'http://localhost:8083/api/auth';
+  private client!: Client;
 
   constructor(
     private http: HttpClient, 
     public router: Router,
-    public location: Location
+    public location: Location,
+    private clientService: ClientDataService,
     ) { }
 
 
@@ -33,8 +37,11 @@ export class AuthClientService {
     .post(`${this.BASE_URL}/login`, login)
     .subscribe((res: any) => {
       this.setToken(res.accessToken);
+      this.client = new Client(res.id, res.name, res.email);
+      this.clientService.client = this.client;
       // this.location.replaceState('/client/dashboard');
-      this.router.navigate(['client/dashboard']);
+      this.router.navigate(['client/dashboard'], res);
+      console.log(res);
     })
   }
 
@@ -57,9 +64,25 @@ export class AuthClientService {
 
   doLogout() {
     let removeToken = localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
     if (removeToken == null) {
       this.router.navigate(['auth/login']);
     }
   }
+
+  getClientProfile(id: any): Observable<any>{
+    return this.http.get(`${this.BASE_URL}/client/${id}`).pipe(
+      map((res) => {
+        return res || {};
+      }),
+    )
+  }
+
+
+
+
+
 
 }

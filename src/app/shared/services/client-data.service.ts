@@ -4,32 +4,37 @@ import Client from 'src/app/core/models/client.model';
 import Order from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
 import { environment } from 'src/environments/environment';
+import PortfolioListDTO from '../models/portfolioListDTO.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientDataService {
-  private _client: Client;
-  private _portfolios: Portfolio[];
 
+  private BASE_URL = 'http://localhost:8083/api/v1/portfolio';
+  private _client!: Client;
   constructor(private http: HttpClient) {
-    this._client = new Client('gerald-tetteh');
-    this._portfolios = [
-      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'High Worth'),
-      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'Skeptical'),
-      new Portfolio('80148814-fcdd-11ed-be56-0242ac120002', 'Low Worth'),
-    ];
   }
 
   get client() {
     return this._client;
   }
-  get portfolios() {
-    return this._portfolios;
+
+  set client (client : Client){
+    this._client = client;
   }
 
   createOrder(order: Order) {
-    // order.portfolioId = Number(order.portfolioId);
     return this.http.post(environment.ordersBaseUrl, order);
   }
+
+  getPortfolios() {
+    return this.http.get<PortfolioListDTO>(`${this.BASE_URL}/client/${this._client.id}`);
+  }
+
+  
+
+
+
+
 }
