@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import APIException from 'src/app/core/models/api-exception.model';
 import Client from 'src/app/core/models/client.model';
+import CreatePortfolio from 'src/app/core/models/createportfolio.model';
 import Order from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
 import { environment } from 'src/environments/environment';
 import PortfolioListDTO from '../../models/portfolioListDTO.model';
-// import PortfolioListDTO from '../models/portfolioListDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,16 +20,16 @@ export class ClientDataService {
   }
 
   get client() {
-    if(this._client) {
+    if (this._client) {
       return this._client;
     }
     this._client = JSON.parse(localStorage.getItem("client")!);
     return this._client;
   }
 
-  set client (client : Client){
+  set client(client: Client) {
     this._client = client;
-    localStorage.setItem("client",JSON.stringify(this._client));
+    localStorage.setItem("client", JSON.stringify(this._client));
   }
 
   createOrder(order: Order) {
@@ -56,9 +56,10 @@ export class ClientDataService {
     return this.http.get<PortfolioListDTO>(`${this.BASE_URL}/client/${this._client.id}`);
   }
 
-  
-
-
-
+  createPortfolio(createPortfolio: CreatePortfolio) {
+    createPortfolio.clientID = this._client.id;
+    return this.http
+      .post(`${this.BASE_URL}`, createPortfolio);
+  }
 
 }

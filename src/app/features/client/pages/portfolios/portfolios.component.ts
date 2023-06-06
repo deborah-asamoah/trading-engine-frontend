@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import Client from 'src/app/core/models/client.model';
 import { ClientDataService } from 'src/app/shared/services/client-data/client-data.service';
-
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Portfolio from 'src/app/core/models/portfolio.model';
 @Component({
   selector: 'app-portfolios',
   templateUrl: './portfolios.component.html',
@@ -10,10 +10,10 @@ import { ClientDataService } from 'src/app/shared/services/client-data/client-da
 })
 export class PortfoliosComponent implements OnInit {
   client!: Client;
+  portfolios: Portfolio[] = [];
 
-  balance = 150.0;
-  boundOpenOrderBoxModal = this.openOrderBoxModal.bind(this);
-  @ViewChild('orderBox') element!: ElementRef;
+  @Input() onClick: () => void = () => {};
+  @ViewChild('content') element!: ElementRef;
 
 
   constructor(
@@ -23,12 +23,43 @@ export class PortfoliosComponent implements OnInit {
 
   ngOnInit(): void {
     this.client = this.clientDataService.client;
+
+    this.clientDataService.getPortfolios().subscribe(
+			res => {
+			this.portfolios = res.portfolioDTOS;
+		})
   }
 
-  openOrderBoxModal() {
-    this.modalService.open(this.element, {
-      centered: true,
-      scrollable: true,
-    });
+
+
+  closeResult = '';
+
+	open(content: any) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
+
+
+  handlePortfolioCreated () {
+    this.clientDataService.getPortfolios().subscribe(
+			res => {
+			this.portfolios = res.portfolioDTOS;
+		})
   }
 }

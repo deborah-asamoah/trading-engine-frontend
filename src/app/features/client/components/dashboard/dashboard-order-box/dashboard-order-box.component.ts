@@ -37,7 +37,7 @@ export class DashboardOrderBoxComponent implements OnInit {
     private clientDataService: ClientDataService,
     private toastService: ToastService
   ) {
-    // this.portfolios = clientDataService.getPortfolios();
+    this.portfolios = clientDataService.getPortfolios();
   }
 
   ngOnInit(): void {

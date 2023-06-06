@@ -1,0 +1,28 @@
+<div class="dashboard__order-box">
+    <form (ngSubmit)="onSubmit($event)" class="form" [formGroup]="formGroup" novalidate>
+      <div class="modal-header dashboard__order-box__header">
+        <h4 class="modal-title">Create Portofolio</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal?.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- name -->
+        <div class="form-group">
+          <label for="name" class="form-label">Portfolio Name</label>
+          <input [ngClass]="name.invalid && (name.dirty || name.touched) ? 'is-invalid' : ''" type="text"
+            formControlName="name" id="name" class="form-control" placeholder="eg. High Options" required />
+          <div class="invalid-feedback">Please enter a name</div>
+        </div>
+        
+    
+      <!-- Button row -->
+      <div class="modal-footer">
+        <div class="form-group dashboard__order-box__button-row">
+          <app-button type="reset" text="Clear" color="red"></app-button>
+          <app-button text="Submit" color="green"></app-button>
+        </div>
+      </div>
+
+      </div>
+    </form>
+  </div>

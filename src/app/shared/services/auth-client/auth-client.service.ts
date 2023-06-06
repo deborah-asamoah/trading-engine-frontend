@@ -28,6 +28,9 @@ export class AuthClientService {
     .post(`${this.BASE_URL}/register`, registerClient)
     .subscribe((res: any) => {
       this.setToken(res.accessToken);
+      this.client = new Client(res.id, res.name, res.email);
+      this.clientService.client = this.client;
+      this.location.replaceState('/client/dashboard');
       this.router.navigate(['client/dashboard']);
     })
   }
@@ -39,9 +42,8 @@ export class AuthClientService {
       this.setToken(res.accessToken);
       this.client = new Client(res.id, res.name, res.email);
       this.clientService.client = this.client;
-      // this.location.replaceState('/client/dashboard');
+      this.location.replaceState('/client/dashboard');
       this.router.navigate(['client/dashboard'], res);
-      console.log(res);
     })
   }
 
