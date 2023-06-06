@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BaseComponent } from './pages/base/base.component';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,12 @@ const routes: Routes = [
         path: 'dashboard',
         title: 'Client - Dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'portfolios',
+        title: 'Client - Portfolios',
+        component: PortfoliosComponent,
         canActivate: [AuthGuard]
       },
     ],

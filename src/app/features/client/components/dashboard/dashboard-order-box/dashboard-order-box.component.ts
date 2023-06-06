@@ -31,13 +31,13 @@ export class DashboardOrderBoxComponent implements OnInit {
   ];
   orderTypes: OrderType[] = [OrderType.LIMIT, OrderType.MARKET];
   orderSides: OrderSide[] = [OrderSide.BUY, OrderSide.SELL];
-  portfolios: Portfolio[];
+  portfolios: Portfolio[] = [];
 
   constructor(
     private clientDataService: ClientDataService,
     private toastService: ToastService
   ) {
-    this.portfolios = clientDataService.portfolios;
+    // this.portfolios = clientDataService.getPortfolios();
   }
 
   ngOnInit(): void {
@@ -73,6 +73,12 @@ export class DashboardOrderBoxComponent implements OnInit {
         updateOn: 'submit',
       }),
     });
+
+    this.clientDataService.getPortfolios().subscribe(
+      (res) => {
+        this.portfolios = res.portfolioDTOS;
+      }
+    )
   }
 
   get price(): AbstractControl {

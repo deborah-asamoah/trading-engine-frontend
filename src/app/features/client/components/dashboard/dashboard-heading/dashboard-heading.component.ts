@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./dashboard-heading.component.scss'],
 })
 export class DashboardHeadingComponent {
-  @Input() username = '';
+  @Input() name = '';
   @Input() balance = 0.0;
 
   constructor() {}

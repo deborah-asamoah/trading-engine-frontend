@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+    margin-top: 4rem;
+
+    thead{
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    tbody{
+        :hover{
+            background-color: #74BDCB;
+            cursor: pointer;
+        }
+    }
+}

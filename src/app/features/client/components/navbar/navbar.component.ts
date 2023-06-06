@@ -9,11 +9,13 @@ import { AuthClientService } from 'src/app/shared/services/auth-client/auth-clie
 export class NavbarComponent {
   constructor (private authClientService: AuthClientService) {}
   
-  @Input() username: string = '';
+  @Input() name: string = '';
   isMenuCollapsed = true;
 
   logout() {
     console.log('logged out');
     this.authClientService.doLogout();
   }
+
+  
 }

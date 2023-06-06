@@ -9,7 +9,7 @@ import { AuthClientService } from '../../../../shared/services/auth-client/auth-
 export class SidebarComponent {
   constructor (private authClientService: AuthClientService) {}
 
-  @Input() username = '';
+  @Input() name = '';
 
   logout() {
     console.log('logged out');
