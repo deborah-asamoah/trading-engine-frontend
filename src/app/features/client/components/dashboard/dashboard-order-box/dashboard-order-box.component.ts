@@ -32,13 +32,12 @@ export class DashboardOrderBoxComponent implements OnInit {
   orderTypes: OrderType[] = [OrderType.LIMIT, OrderType.MARKET];
   orderSides: OrderSide[] = [OrderSide.BUY, OrderSide.SELL];
   portfolios: Portfolio[] = [];
+  isLoading = false;
 
   constructor(
     private clientDataService: ClientDataService,
     private toastService: ToastService
-  ) {
-    this.portfolios = clientDataService.getPortfolios();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -47,10 +46,7 @@ export class DashboardOrderBoxComponent implements OnInit {
         updateOn: 'submit',
       }),
       price: new FormControl<number | null>(null, {
-        validators: Validators.compose([
-          Validators.required,
-          Validators.min(1),
-        ]),
+        validators: Validators.compose([Validators.required]),
         updateOn: 'submit',
       }),
       quantity: new FormControl<number | null>(null, {
@@ -74,11 +70,9 @@ export class DashboardOrderBoxComponent implements OnInit {
       }),
     });
 
-    this.clientDataService.getPortfolios().subscribe(
-      (res) => {
-        this.portfolios = res.portfolioDTOS;
-      }
-    )
+    this.clientDataService.getPortfolios().subscribe((res) => {
+      this.portfolios = res.portfolioDTOS;
+    });
   }
 
   get price(): AbstractControl {
@@ -112,6 +106,7 @@ export class DashboardOrderBoxComponent implements OnInit {
       this.formGroup.markAllAsTouched();
       return;
     }
+    this.isLoading = true;
 
     this.clientDataService.createOrder(this.formGroup.value).subscribe({
       next: (value) => {
@@ -130,6 +125,7 @@ export class DashboardOrderBoxComponent implements OnInit {
           header: err.error,
         });
       },
+      complete: () => (this.isLoading = false),
     });
   }
 }

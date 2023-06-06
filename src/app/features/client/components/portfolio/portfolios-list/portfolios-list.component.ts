@@ -22,19 +22,13 @@ export class PortfoliosListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // openOrderBoxModal() {
-  //   this.modalService.open(this.element, {
-  //     centered: true,
-  //     scrollable: true,
-  //   });
-  // }
-
 	open(content: any) {
 		this.modalService.open(content, {
           // centered: true,
           scrollable: true,
           size: 'lg'
-        });
+    });
+    console.log(this.portfolios)
 	}
 
 }

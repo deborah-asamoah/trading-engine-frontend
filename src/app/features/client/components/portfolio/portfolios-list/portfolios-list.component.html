@@ -16,7 +16,7 @@
             <td class="del"><fa-icon [icon]="'trash'"></fa-icon></td>
 
 			<ng-template #content let-modal>
-				<portfolio-stock-list [modal]="modal"></portfolio-stock-list>
+				<portfolio-stock-list [portId]="portfolio.id"  [modal]="modal"></portfolio-stock-list>
 			</ng-template>
             <td (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
 				<fa-icon [icon]="'angle-right'"></fa-icon>
