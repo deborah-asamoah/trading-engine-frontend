@@ -32,9 +32,4 @@ export class ClientDataService {
     return this.http.get<PortfolioListDTO>(`${this.BASE_URL}/client/${this._client.id}`);
   }
 
-  
-
-
-
-
 }

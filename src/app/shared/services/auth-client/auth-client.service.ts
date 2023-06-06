@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import Login from 'src/app/core/models/login.model';
 import RegisterClient from 'src/app/core/models/registerclient.model';
-import { ClientDataService } from '../client-data.service';
 import Client from 'src/app/core/models/client.model';
+import { ClientDataService } from '../client-data/client-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -79,10 +79,4 @@ export class AuthClientService {
       }),
     )
   }
-
-
-
-
-
-
 }

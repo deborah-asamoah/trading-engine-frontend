@@ -1,17 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Client from 'src/app/core/models/client.model';
-import { AuthClientService } from 'src/app/shared/services/auth-client/auth-client.service';
-import { ClientDataService } from 'src/app/shared/services/client-data.service';
+import { ClientDataService } from 'src/app/shared/services/client-data/client-data.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-
-
 export class DashboardComponent implements OnInit {
   // private unsubscriber : Subject<void> = new Subject<void>();
 

@@ -10,7 +10,7 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
   faArrowRightFromBracket,
   faBars,
@@ -25,14 +25,15 @@ import { DashboardOrderBoxComponent } from './components/dashboard/dashboard-ord
 import { DashboardOpenOrdersComponent } from './components/dashboard/dashboard-open-orders/dashboard-open-orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MarketDataService } from './services/market-data/market-data.service';
-import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/dashboard-graph.component';
 import { PortfolioHeadingComponent } from './components/portfolio/portfolio-heading/portfolio-heading.component';
 import { PortfoliosListComponent } from './components/portfolio/portfolios-list/portfolios-list.component';
 import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
 
 
+import { ToastContainerComponent } from '../../shared/components/toast-container/toast-container.component';
+import { MarketDataService } from './services/market-data/market-data.service';
+import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 
 @NgModule({
   declarations: [
@@ -57,13 +58,14 @@ import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ToastContainerComponent,
   ],
   providers: [
     {
       provide: MarketDataService,
       useFactory: marketDataServiceFactory,
-    },
-  ],
+    }
+  ]
 })
 export class ClientModule {
   constructor(library: FaIconLibrary) {

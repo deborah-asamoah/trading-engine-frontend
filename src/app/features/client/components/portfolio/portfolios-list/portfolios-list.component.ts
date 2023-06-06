@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Portfolio from 'src/app/core/models/portfolio.model';
-import PortfolioListDTO from 'src/app/shared/models/portfolioListDTO.model';
-import { ClientDataService } from 'src/app/shared/services/client-data.service';
+import { ClientDataService } from 'src/app/shared/services/client-data/client-data.service';
 
 @Component({
   selector: 'portfolio-list',

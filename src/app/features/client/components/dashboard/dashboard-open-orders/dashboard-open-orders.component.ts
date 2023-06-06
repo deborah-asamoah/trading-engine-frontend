@@ -39,6 +39,7 @@ export class DashboardOpenOrdersComponent implements OnInit {
       .subscribe((message: Message) => {
         const data = JSON.parse(message.body);
         this.parseOrderBooks(data);
+        this.filterOrders();
       });
     this.marketDataService.publish({
       destination: marketDataUrls.initialOrderBookTopic,
