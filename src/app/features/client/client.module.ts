@@ -10,7 +10,7 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   faArrowRightFromBracket,
   faBars,
@@ -28,6 +28,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/dashboard-graph.component';
+import { ToastContainerComponent } from '../../shared/components/toast-container/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,12 @@ import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/
     DashboardOpenOrdersComponent,
     DashboardGraphComponent,
   ],
+  providers: [
+    {
+      provide: MarketDataService,
+      useFactory: marketDataServiceFactory,
+    },
+  ],
   imports: [
     CommonModule,
     ClientRoutingModule,
@@ -49,12 +56,7 @@ import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-  ],
-  providers: [
-    {
-      provide: MarketDataService,
-      useFactory: marketDataServiceFactory,
-    },
+    ToastContainerComponent,
   ],
 })
 export class ClientModule {

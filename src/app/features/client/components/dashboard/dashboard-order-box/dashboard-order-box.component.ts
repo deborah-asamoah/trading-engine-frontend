@@ -6,9 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import APIException from 'src/app/core/models/api-exception.model';
 import { OrderSide, OrderType } from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
-import { ClientDataService } from 'src/app/shared/services/client-data.service';
+import { ClientDataService } from 'src/app/shared/services/client-data/client-data.service';
+import { ToastService } from 'src/app/shared/services/toast-service/toast-service.service';
 
 @Component({
   selector: 'app-dashboard-order-box',
@@ -31,7 +33,10 @@ export class DashboardOrderBoxComponent implements OnInit {
   orderSides: OrderSide[] = [OrderSide.BUY, OrderSide.SELL];
   portfolios: Portfolio[];
 
-  constructor(private clientDataService: ClientDataService) {
+  constructor(
+    private clientDataService: ClientDataService,
+    private toastService: ToastService
+  ) {
     this.portfolios = clientDataService.portfolios;
   }
 
@@ -102,33 +107,20 @@ export class DashboardOrderBoxComponent implements OnInit {
       return;
     }
 
-    this.clientDataService
-      .createOrder(this.formGroup.value)
-      .subscribe((value) => console.log(value));
-    form.reset();
-  }
-
-  onProductChange() {
-    this.product.value;
-  }
-
-  onPriceChange() {
-    this.price.value;
-  }
-
-  onTypeChange() {
-    this.type.value;
-  }
-
-  onSideChange() {
-    this.side.value;
-  }
-
-  onQuantityChange() {
-    this.quantity.value;
-  }
-
-  onPortfolioChange() {
-    this.portfolioId.value;
+    this.clientDataService.createOrder(this.formGroup.value).subscribe({
+      next: (value) => {
+        console.log(value);
+        this.toastService.show('I am a success toast', {
+          classname: 'bg-success text-light',
+          delay: 10000,
+        });
+      },
+      error: (err: APIException) => console.log(err.statusCode),
+    });
+    console.log('here');
+    this.toastService.show('I am a success toast', {
+      classname: 'bg-success text-light',
+      delay: 10000,
+    });
   }
 }
