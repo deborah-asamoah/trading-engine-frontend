@@ -109,18 +109,21 @@ export class DashboardOrderBoxComponent implements OnInit {
 
     this.clientDataService.createOrder(this.formGroup.value).subscribe({
       next: (value) => {
-        console.log(value);
-        this.toastService.show('I am a success toast', {
-          classname: 'bg-success text-light',
+        this.toastService.show('Your order has been placed successfully', {
+          classname: 'bg-success text-light lead',
           delay: 10000,
+          header: 'Order Submitted',
+        });
+        this.formGroup.reset();
+        this.modal?.close();
+      },
+      error: (err: APIException) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 15000,
+          header: err.error,
         });
       },
-      error: (err: APIException) => console.log(err.statusCode),
-    });
-    console.log('here');
-    this.toastService.show('I am a success toast', {
-      classname: 'bg-success text-light',
-      delay: 10000,
     });
   }
 }

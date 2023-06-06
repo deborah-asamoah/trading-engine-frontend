@@ -1,6 +1,6 @@
 interface APIException {
   statusCode: number;
-  title: string;
+  message: string;
   error: string;
 }
 
