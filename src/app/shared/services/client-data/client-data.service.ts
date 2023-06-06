@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+import APIException from 'src/app/core/models/api-exception.model';
 import Client from 'src/app/core/models/client.model';
 import Order from 'src/app/core/models/order.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
@@ -29,7 +31,22 @@ export class ClientDataService {
   }
 
   createOrder(order: Order) {
-    // order.portfolioId = Number(order.portfolioId);
-    return this.http.post(environment.ordersBaseUrl, order);
+    return this.http
+      .post<string>(environment.ordersBaseUrl, order)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    let error = <APIException>{
+      error: err.error,
+      statusCode: 0,
+      title: 'Could not complete order',
+    };
+    if (err.status !== 0) {
+      const errorResponse: APIException = err.error;
+      error = errorResponse;
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => error);
   }
 }
