@@ -9,6 +9,8 @@ import { ClientModule } from './features/client/client.module';
 import { HomeComponent } from './components/home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/authconfig.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -19,13 +21,15 @@ import { AuthInterceptor } from './shared/interceptor/authconfig.interceptor';
     AdminModule,
     AuthModule,
     ClientModule,
+    FontAwesomeModule,
+    NgbModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

@@ -4,37 +4,40 @@ import { catchError, throwError } from 'rxjs';
 import APIException from 'src/app/core/models/api-exception.model';
 import Client from 'src/app/core/models/client.model';
 import Order from 'src/app/core/models/order.model';
-import Portfolio from 'src/app/core/models/portfolio.model';
 import { environment } from 'src/environments/environment';
 import PortfolioListDTO from '../../models/portfolioListDTO.model';
-// import PortfolioListDTO from '../models/portfolioListDTO.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientDataService {
-
-  private BASE_URL = 'http://localhost:8083/api/v1/portfolio';
   private _client!: Client;
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   get client() {
-    if(this._client) {
+    if (this._client) {
       return this._client;
     }
-    this._client = JSON.parse(localStorage.getItem("client")!);
+    this._client = JSON.parse(localStorage.getItem('client')!);
     return this._client;
   }
 
-  set client (client : Client){
+  set client(client: Client) {
     this._client = client;
-    localStorage.setItem("client",JSON.stringify(this._client));
+    localStorage.setItem('client', JSON.stringify(this._client));
   }
 
   createOrder(order: Order) {
     return this.http
       .post<string>(environment.ordersBaseUrl, order)
+      .pipe(catchError(this.handleError));
+  }
+
+  getPortfolios() {
+    return this.http
+      .get<PortfolioListDTO>(
+        `${environment.portfoliosBaseUrl}/client/${this._client.id}`
+      )
       .pipe(catchError(this.handleError));
   }
 
@@ -51,14 +54,4 @@ export class ClientDataService {
     // Return an observable with a user-facing error message.
     return throwError(() => error);
   }
-
-  getPortfolios() {
-    return this.http.get<PortfolioListDTO>(`${this.BASE_URL}/client/${this._client.id}`);
-  }
-
-  
-
-
-
-
 }
