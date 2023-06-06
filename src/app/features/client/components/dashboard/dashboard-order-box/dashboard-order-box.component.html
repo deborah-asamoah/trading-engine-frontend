@@ -19,8 +19,8 @@
       <!-- price -->
       <div class="form-group">
         <label for="price" class="form-label">Price</label>
-        <input [ngClass]="price.invalid && (price.dirty || price.touched) ? 'is-invalid' : ''" type="number"
-          formControlName="price" id="price" class="form-control" placeholder="$99.99" required min="1" />
+        <input [ngClass]="price.invalid && (price.dirty || price.touched) ? 'is-invalid' : ''" type="number" step=".01"
+          formControlName="price" id="price" class="form-control" placeholder="$99.99" required />
         <div class="invalid-feedback">Please enter a valid price</div>
       </div>
       <!-- type -->
@@ -66,10 +66,13 @@
     </div>
     <!-- Button row -->
     <div class="modal-footer">
-      <div class="form-group dashboard__order-box__button-row">
+      <div class="form-group dashboard__order-box__button-row" *ngIf="!isLoading; else loader">
         <app-button type="reset" text="Clear" color="red"></app-button>
         <app-button text="Submit" color="green"></app-button>
       </div>
+      <ng-template #loader>
+        <app-pulse-loader></app-pulse-loader>
+      </ng-template>
     </div>
   </form>
 </div>
