@@ -40,7 +40,7 @@ export class ClientDataService {
     let error = <APIException>{
       error: err.error,
       statusCode: 0,
-      title: 'Could not complete order',
+      message: 'Could not complete order',
     };
     if (err.status !== 0) {
       const errorResponse: APIException = err.error;
