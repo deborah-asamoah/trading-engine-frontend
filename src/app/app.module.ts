@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/authconfig.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -23,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ClientModule,
     FontAwesomeModule,
     NgbModule,
+    NgChartsModule,
   ],
   providers: [
     {
