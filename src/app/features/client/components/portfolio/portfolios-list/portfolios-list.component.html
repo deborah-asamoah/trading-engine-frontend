@@ -19,7 +19,7 @@
 			</ng-template>
 
 			<td>
-				<span class="trash"><fa-icon [icon]="'trash'"></fa-icon></span> &nbsp;&nbsp;&nbsp;
+				<span (click)="deletePortfolio(portfolio.id)" class="trash"><fa-icon [icon]="'trash'"></fa-icon></span> &nbsp;&nbsp;&nbsp;
 
 				<span (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
 					<fa-icon [icon]="'angle-right'"></fa-icon>

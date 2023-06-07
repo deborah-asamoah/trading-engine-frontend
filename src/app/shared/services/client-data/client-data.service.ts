@@ -63,8 +63,22 @@ export class ClientDataService {
       .post(`${environment.portfoliosBaseUrl}`, createPortfolio);
   }
 
+
+  deletePortfolio(portfolioId: string) {
+    console.log(portfolioId)
+    return this.http
+    .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`);
+  }
+
+
+
+
   getPortfolioOrders(id: string) {
     return this.http.get(`${environment.portfoliosBaseUrl}/${id}/orders`).pipe(catchError(this.handleError));
   }
+
+
+
+
 
 }
