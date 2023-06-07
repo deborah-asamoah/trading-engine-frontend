@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import APIException from 'src/app/core/models/api-exception.model';
 import Client from 'src/app/core/models/client.model';
+import CreatePortfolio from 'src/app/core/models/createportfolio.model';
 import Order from 'src/app/core/models/order.model';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import PortfolioListDTO from '../../models/portfolioListDTO.model';
 
 @Injectable({
@@ -54,4 +55,16 @@ export class ClientDataService {
     // Return an observable with a user-facing error message.
     return throwError(() => error);
   }
+
+
+  createPortfolio(createPortfolio: CreatePortfolio) {
+    createPortfolio.clientID = this._client.id;
+    return this.http
+      .post(`${environment.portfoliosBaseUrl}`, createPortfolio);
+  }
+
+  getPortfolioOrders(id: string) {
+    return this.http.get(`${environment.portfoliosBaseUrl}/${id}/orders`).pipe(catchError(this.handleError));
+  }
+
 }

@@ -1,37 +1,31 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th scope="col"></th>
 			<th scope="col">Portfolio Name</th>
-			<th scope="col">Total number of stocks</th>
-			<th scope="col">Total balance of Portfolio</th>
-            <th scope="col"></th>
-            <th></th>
+            <th scope="col">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 
-
-		<!-- <tr *ngFor="let country of countries; index as i">
-			<th scope="row">{{ i + 1 }}</th>
-			<td>
-				{{ country.name }}
-			</td>
-			<td>{{ country.area | number }}</td>
-			<td>{{ country.population | number }}</td>
-            <td>x</td>
-            <td>></td>
-		</tr> -->
-
-
-
 		<tr *ngFor="let portfolio of portfolios; index as i">
-			<th scope="row">{{ i + 1 }}</th>
 			<td>
 				{{ portfolio.name }}
 			</td>
-            <td>x</td>
-            <td>></td>
+            <td class="del"></td>
+			
+
+			<ng-template #content let-modal>
+				<portfolio-stock-list [portId]="portfolio.id"  [portfolioName]="portfolio.name" [modal]="modal"></portfolio-stock-list>
+			</ng-template>
+
+			<td>
+				<span class="trash"><fa-icon [icon]="'trash'"></fa-icon></span> &nbsp;&nbsp;&nbsp;
+
+				<span (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
+					<fa-icon [icon]="'angle-right'"></fa-icon>
+				</span>
+
+			</td>
 		</tr>
 	</tbody>
 </table>

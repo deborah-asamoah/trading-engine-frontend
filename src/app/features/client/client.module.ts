@@ -13,12 +13,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import {
+  faAngleRight,
   faArrowRightFromBracket,
   faBars,
   faBriefcase,
   faCartShopping,
   faHouse,
   faMoneyBillTrendUp,
+  faPlus,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { DashboardHeadingComponent } from './components/dashboard/dashboard-heading/dashboard-heading.component';
 import { DashboardMarketBriefComponent } from './components/dashboard/dashboard-market-brief/dashboard-market-brief.component';
@@ -30,10 +33,11 @@ import { DashboardGraphComponent } from './components/dashboard/dashboard-graph/
 import { PortfolioHeadingComponent } from './components/portfolio/portfolio-heading/portfolio-heading.component';
 import { PortfoliosListComponent } from './components/portfolio/portfolios-list/portfolios-list.component';
 import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
-
 import { ToastContainerComponent } from '../../shared/components/toast-container/toast-container.component';
 import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
+import { CreatePortfolioComponent } from './components/portfolio/create-portfolio/create-portfolio.component';
+import { PortfolioStockListComponent } from './components/portfolio/portfolio-stock-list/portfolio-stock-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import marketDataServiceFactory from './services/market-data/market-data-service
     PortfolioHeadingComponent,
     PortfoliosListComponent,
     PortfoliosComponent,
+    CreatePortfolioComponent,
+    PortfolioStockListComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +82,10 @@ export class ClientModule {
       faBriefcase,
       faCartShopping,
       faMoneyBillTrendUp,
-      faArrowRightFromBracket
+      faArrowRightFromBracket,
+      faPlus,
+      faAngleRight,
+      faTrash
     );
   }
 }
