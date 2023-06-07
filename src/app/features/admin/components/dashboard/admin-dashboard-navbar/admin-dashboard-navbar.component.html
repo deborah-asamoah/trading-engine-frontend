@@ -1,0 +1,52 @@
+<header class="header d-xl-none">
+    <nav class="navbar navbar-lg-expand header__navbar">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand header__navbar__brand">
+          <span class="me-3">
+            <img src="assets/profile-image.svg" alt="Profile image">
+          </span>
+          <span>
+            <h3>Admin</h3>
+            <p>Admin</p>
+          </span>
+        </a>
+        <button class="navbar-toggler header__navbar__button" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
+          aria-label="Toggle navigation" (click)="isMenuCollapsed = !isMenuCollapsed">
+          <fa-icon class="header__navbar__icon" [icon]="'bars'"></fa-icon>
+        </button>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav header__navbar__items mt-3 ms-2">
+            <li routerLinkActive="active" class="nav-item">
+              <a routerLink="/admin/dashboard">
+                <fa-icon [icon]="'house'"></fa-icon>
+                Dashboard
+              </a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+              <a routerLink="/admin/trades">
+                <fa-icon [icon]="'chart-simple'"></fa-icon>
+                Trades
+              </a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+              <a routerLink="/admin/clients">
+                <fa-icon [icon]="'users'"></fa-icon>
+                Clients
+              </a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+              <a routerLink="/admin/exchanges">
+                <fa-icon [icon]="'right-left'"></fa-icon>
+                Exchanges
+              </a>
+            </li>
+            <li routerLinkActive="active" class="nav-item" (click)="logout()">
+              <fa-icon [icon]="'arrow-right-from-bracket'"></fa-icon>
+              Logout
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>

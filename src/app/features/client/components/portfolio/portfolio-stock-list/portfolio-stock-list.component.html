@@ -1,7 +1,7 @@
 <div class="portfolio-stock-list">
 
       <div class="modal-header">
-        <div>Portfolio name</div>
+        <div>{{portfolioName}}</div>
       </div>
 
       <div class="modal-body">
@@ -18,7 +18,7 @@
             <tbody>
               <tr *ngFor="let portfolioOrder of portfolioOrders; index as i">
                 <td>{{portfolioOrder.product}}</td>
-                <td>{{portfolioOrder.quantity}</td>
+                <td>{{portfolioOrder.quantity}}</td>
                 <td>{{portfolioOrder.side}}</td>
                 <td>{{portfolioOrder.type}}</td>
                 <td>{{portfolioOrder.product}}</td>
@@ -26,20 +26,4 @@
             </tbody>
           </table>
         </div>
-
-
-        <!-- <tr *ngFor="let portfolio of portfolios; index as i">
-          <td>
-            {{ portfolio.name }}
-          </td>
-                <td class="del"><fa-icon [icon]="'trash'"></fa-icon></td>
-    
-          <ng-template #content let-modal>
-            <portfolio-stock-list [portId]="portfolio.id"  [modal]="modal"></portfolio-stock-list>
-          </ng-template>
-                <td (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
-            <fa-icon [icon]="'angle-right'"></fa-icon>
-          </td>
-        </tr> -->
-
 </div>

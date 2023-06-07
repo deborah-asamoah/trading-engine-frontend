@@ -1,0 +1,27 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Client Name</th>
+            <th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<tr>
+			<td>
+				Gigi
+			</td>
+
+
+			<ng-template #content let-modal>
+				<admin-client-stock></admin-client-stock>
+			</ng-template>
+
+			<td>
+				<span  (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
+					<fa-icon [icon]="'angle-right'"></fa-icon>
+				</span>
+			</td>
+		</tr>
+	</tbody>
+</table>

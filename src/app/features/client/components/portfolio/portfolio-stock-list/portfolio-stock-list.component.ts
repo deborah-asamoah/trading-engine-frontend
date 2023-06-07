@@ -12,7 +12,8 @@ export class PortfolioStockListComponent implements OnInit {
 
   @Input() modal?: NgbActiveModal;
   @Input() portId?: string;
-  portfolioOrders: any= [];
+  @Input() portfolioName?: string;
+  portfolioOrders: Order[]= [];
 
   constructor(
     private clientDataService: ClientDataService,
@@ -22,8 +23,10 @@ export class PortfolioStockListComponent implements OnInit {
     console.log(this.portId)
     this.clientDataService.getPortfolioOrders(this.portId!).subscribe(
       res => {
-        this.portfolioOrders = res;
+        this.portfolioOrders = (res as  { orders: Order[]}).orders;
+        console.log(res);
       }
+      
     )
   }
 

@@ -64,7 +64,7 @@ export class ClientDataService {
   }
 
   getPortfolioOrders(id: string) {
-    return this.http.get(`${environment.ordersBaseUrl}/${id}/orders`).pipe(catchError(this.handleError));
+    return this.http.get(`${environment.portfoliosBaseUrl}/${id}/orders`).pipe(catchError(this.handleError));
   }
 
 }

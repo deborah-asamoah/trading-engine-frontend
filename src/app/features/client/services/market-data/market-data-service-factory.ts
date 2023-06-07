@@ -6,8 +6,10 @@ export const marketDataUrls = {
   connect: `${environment.marketBaseUrl}/market-data/subscribe`,
   marketDataTopic: '/market-data/update',
   orderBookTopic: '/order-book/update',
+  trendTopic: '/trend/update',
   initialMarketDataTopic: '/app/market-data/initial',
   initialOrderBookTopic: '/app/order-book/initial',
+  initialTrendTopic: '/app/trend/initial',
 };
 
 const marketDataStompConfig: RxStompConfig = {

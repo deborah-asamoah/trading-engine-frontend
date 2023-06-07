@@ -1,6 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { Component, Input, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-heading',

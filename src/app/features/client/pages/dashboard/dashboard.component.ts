@@ -11,8 +11,6 @@ import { ClientDataService } from 'src/app/shared/services/client-data/client-da
 export class DashboardComponent implements OnInit {
   // private unsubscriber : Subject<void> = new Subject<void>();
 
-  currentUser = {};
-
   client!: Client;
   balance = 150.0;
   boundOpenOrderBoxModal = this.openOrderBoxModal.bind(this);

@@ -10,7 +10,8 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 import {
   faAngleRight,
   faArrowRightFromBracket,
@@ -64,13 +65,14 @@ import { PortfolioStockListComponent } from './components/portfolio/portfolio-st
     ReactiveFormsModule,
     SharedModule,
     ToastContainerComponent,
+    NgChartsModule,
   ],
   providers: [
     {
       provide: MarketDataService,
       useFactory: marketDataServiceFactory,
-    }
-  ]
+    },
+  ],
 })
 export class ClientModule {
   constructor(library: FaIconLibrary) {

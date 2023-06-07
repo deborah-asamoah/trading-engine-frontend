@@ -2,24 +2,29 @@
 	<thead>
 		<tr>
 			<th scope="col">Portfolio Name</th>
-			<th scope="col">Delete</th>
-            <th scope="col">View</th>
+            <th scope="col">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-
 
 		<tr *ngFor="let portfolio of portfolios; index as i">
 			<td>
 				{{ portfolio.name }}
 			</td>
-            <td class="del"><fa-icon [icon]="'trash'"></fa-icon></td>
+            <td class="del"></td>
+			
 
 			<ng-template #content let-modal>
-				<portfolio-stock-list [portId]="portfolio.id"  [modal]="modal"></portfolio-stock-list>
+				<portfolio-stock-list [portId]="portfolio.id"  [portfolioName]="portfolio.name" [modal]="modal"></portfolio-stock-list>
 			</ng-template>
-            <td (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
-				<fa-icon [icon]="'angle-right'"></fa-icon>
+
+			<td>
+				<span class="trash"><fa-icon [icon]="'trash'"></fa-icon></span> &nbsp;&nbsp;&nbsp;
+
+				<span (click)="open(content)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="angle_right">
+					<fa-icon [icon]="'angle-right'"></fa-icon>
+				</span>
+
 			</td>
 		</tr>
 	</tbody>
