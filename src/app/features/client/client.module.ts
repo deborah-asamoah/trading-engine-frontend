@@ -10,7 +10,8 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 import {
   faArrowRightFromBracket,
   faBars,
@@ -30,7 +31,6 @@ import { PortfolioHeadingComponent } from './components/portfolio/portfolio-head
 import { PortfoliosListComponent } from './components/portfolio/portfolios-list/portfolios-list.component';
 import { PortfoliosComponent } from './pages/portfolios/portfolios.component';
 
-
 import { ToastContainerComponent } from '../../shared/components/toast-container/toast-container.component';
 import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
@@ -48,7 +48,7 @@ import marketDataServiceFactory from './services/market-data/market-data-service
     DashboardGraphComponent,
     PortfolioHeadingComponent,
     PortfoliosListComponent,
-    PortfoliosComponent
+    PortfoliosComponent,
   ],
   imports: [
     CommonModule,
@@ -59,13 +59,14 @@ import marketDataServiceFactory from './services/market-data/market-data-service
     ReactiveFormsModule,
     SharedModule,
     ToastContainerComponent,
+    NgChartsModule,
   ],
   providers: [
     {
       provide: MarketDataService,
       useFactory: marketDataServiceFactory,
-    }
-  ]
+    },
+  ],
 })
 export class ClientModule {
   constructor(library: FaIconLibrary) {
