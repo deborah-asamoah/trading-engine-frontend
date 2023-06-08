@@ -1,41 +1,33 @@
 table {
-    width: 100%;
-    margin-top: 4rem;
+  width: 100%;
+  margin-top: 4rem;
 
-    thead{
-        margin-bottom: 2rem;
-        font-size: 2rem;
+  thead {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  tbody {
+    :hover {
+      background-color: #74bdcb;
+      cursor: pointer;
     }
 
-    tbody{
-        :hover{
-            background-color: #74BDCB;
-            cursor: pointer;
-        }
-
-        .del {
-            color: red;
-        }
-
-        .angle_right {
-            color: rgb(1, 1, 185);
-        }
-
-        p {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            span {
-                color: red;
-            }
-
-            .trash{
-                background-color: red;
-            }
-
-            .angle_right{
-                padding-left: 30px;
-            }
-        }
+    .angle_right {
+      color: rgb(1, 1, 185);
     }
+    span {
+      color: red;
+    }
+
+    .trash {
+      & fa-icon {
+        color: red;
+      }
+    }
+
+    .angle_right {
+      margin-left: 30px;
+    }
+  }
 }
