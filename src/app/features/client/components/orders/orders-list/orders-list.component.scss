@@ -1,9 +1,9 @@
 .orders__list {
-  max-height: fit-content;
+  height: 100%;
   padding: 2rem 1rem;
 
   &__table {
-    overflow-y: auto;
+    overflow: auto;
   }
 
   &__selectors {
