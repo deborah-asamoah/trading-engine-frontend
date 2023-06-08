@@ -1,0 +1,55 @@
+<div class="orders__list card rounded-4">
+  <div class="orders__list__header">
+    <form>
+      <div class="orders__list__selectors">
+        <select (change)="onProductSelect($event)" class="form-select form-select-lg" aria-label="Sort product">
+          <option selected disabled value="">Sort product</option>
+          <option *ngFor="let product of products" [value]=product>{{product}}</option>
+        </select>
+        <select (change)="onSideSelect($event)" class="form-select form-select-lg" aria-label="Sort side">
+          <option selected disabled value="">Sort side</option>
+          <option value="SELL">Sell</option>
+          <option value="BUY">Buy</option>
+        </select>
+        <select (change)="onTypeSelect($event)" class="form-select form-select-lg" aria-label="Sort type">
+          <option selected disabled value="">Sort type</option>
+          <option value="LIMIT">LIMIT</option>
+          <option value="MARKET">MARKET</option>
+        </select>
+        <select (change)="onStatusSelect($event)" class="form-select form-select-lg" aria-label="Select status">
+          <option selected disabled value="">Sort status</option>
+          <option value="OPEN">Open</option>
+          <option value="COMPLETED">Complete</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+        <app-button [onClick]="boundOnReset" text="Reset" type="reset"></app-button>
+      </div>
+    </form>
+  </div>
+  <div class="orders__list__table table-responsive">
+    <table class="table table-sm table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Completed Quantity</th>
+          <th scope="col">Value</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of filteredOrders; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ order.product }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.price }}</td>
+          <td>{{ order.cumulativeQuantity }}</td>
+          <td>{{ order.value ?? '0.0' }}</td>
+          <td><app-order-status-chip [state]="computeStatus(order)"></app-order-status-chip></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
