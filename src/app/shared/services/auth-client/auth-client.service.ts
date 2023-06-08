@@ -30,8 +30,14 @@ export class AuthClientService {
       this.setToken(res.accessToken);
       this.client = new Client(res.id, res.name, res.email);
       this.clientService.client = this.client;
-      this.location.replaceState('/client/dashboard');
-      this.router.navigate(['client/dashboard']);
+
+      if (res.role == "USER") {
+        this.location.replaceState('/client/dashboard');
+        this.router.navigate(['client/dashboard']);
+      } else if (res.role == "ADMIN"){
+        this.location.replaceState('/admin/dashboard');
+        this.router.navigate(['admin/dashboard']);
+      }
     })
   }
 
@@ -42,8 +48,14 @@ export class AuthClientService {
       this.setToken(res.accessToken);
       this.client = new Client(res.id, res.name, res.email);
       this.clientService.client = this.client;
-      this.location.replaceState('/client/dashboard');
-      this.router.navigate(['client/dashboard'], res);
+
+      if (res.role == "USER") {
+        this.location.replaceState('/client/dashboard');
+        this.router.navigate(['client/dashboard']);
+      } else if (res.role == "ADMIN") {
+        this.location.replaceState('/admin/dashboard');
+        this.router.navigate(['admin/dashboard']);
+      } 
     })
   }
 
@@ -81,4 +93,6 @@ export class AuthClientService {
       }),
     )
   }
+
+  
 }

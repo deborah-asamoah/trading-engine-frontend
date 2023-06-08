@@ -68,6 +68,13 @@ export class ClientDataService {
       .pipe(catchError(this.handleError));
   }
 
+  deletePortfolio(portfolioId: string) {
+    console.log(portfolioId)
+    return this.http
+    .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`)
+    .pipe(catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse) {
     let error = <APIException>{
       error: err.error,

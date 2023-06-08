@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Client from 'src/app/core/models/client.model';
 import Portfolio from 'src/app/core/models/portfolio.model';
@@ -13,11 +13,13 @@ import { ClientDataService } from 'src/app/shared/services/client-data/client-da
 export class PortfoliosListComponent implements OnInit {
   client!: Client;
 	@Input() portfolios: Portfolio[] = [];
+  @Output() portfoliosOutput =  new EventEmitter();
   @ViewChild('content') element!: ElementRef;
 
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private clientDataService: ClientDataService
   ) {}
 
   ngOnInit(): void {}
@@ -30,5 +32,12 @@ export class PortfoliosListComponent implements OnInit {
     });
     console.log(this.portfolios)
 	}
+
+  deletePortfolio(portfolioId: string){
+    console.log(portfolioId)
+    this.clientDataService.deletePortfolio(portfolioId).subscribe((res:any) => {
+      this.portfoliosOutput.emit();
+    })
+  }
 
 }
