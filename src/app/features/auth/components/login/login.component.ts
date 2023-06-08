@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['client/dashboard']);
           } else if (res.role == "ADMIN") {
             this.location.replaceState('/admin/dashboard');
-            this.router.navigate(['admin/dashboard']);
+            this.router.navigate(['admin/trades/open']);
 
           }
         },

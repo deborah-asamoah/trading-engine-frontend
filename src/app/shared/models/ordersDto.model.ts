@@ -13,6 +13,7 @@ interface OrdersDto {
   cumulativeQuantity: number;
   value?: number;
   complete: boolean;
+  clientName: string;
 }
 
 export default OrdersDto;

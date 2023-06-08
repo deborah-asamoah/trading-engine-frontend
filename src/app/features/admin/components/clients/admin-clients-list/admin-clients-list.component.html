@@ -7,14 +7,11 @@
 	</thead>
 	<tbody>
 
-		<tr>
-			<td>
-				Gigi
-			</td>
-
+		<tr *ngFor="let client of clients">
+			<td>{{client.name}}</td>
 
 			<ng-template #content let-modal>
-				<admin-client-stock></admin-client-stock>
+				<admin-client-stock [client]="client" ></admin-client-stock>
 			</ng-template>
 
 			<td>
