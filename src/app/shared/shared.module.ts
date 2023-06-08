@@ -8,11 +8,22 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-regular-svg-icons';
+import { OrderStatusChipComponent } from './components/order-status-chip/order-status-chip.component';
 
 @NgModule({
-  declarations: [ButtonComponent, PulseLoaderComponent, NoDataComponent],
+  declarations: [
+    ButtonComponent,
+    PulseLoaderComponent,
+    NoDataComponent,
+    OrderStatusChipComponent,
+  ],
   imports: [CommonModule, FontAwesomeModule],
-  exports: [ButtonComponent, PulseLoaderComponent, NoDataComponent],
+  exports: [
+    ButtonComponent,
+    PulseLoaderComponent,
+    NoDataComponent,
+    OrderStatusChipComponent,
+  ],
 })
 export class SharedModule {
   constructor(private library: FaIconLibrary) {

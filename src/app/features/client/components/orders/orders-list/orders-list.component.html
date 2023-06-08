@@ -47,7 +47,7 @@
           <td>{{ order.price }}</td>
           <td>{{ order.cumulativeQuantity }}</td>
           <td>{{ order.value ?? '0.0' }}</td>
-          <td>{{ order.complete }}</td>
+          <td><app-order-status-chip [state]="computeStatus(order)"></app-order-status-chip></td>
         </tr>
       </tbody>
     </table>
