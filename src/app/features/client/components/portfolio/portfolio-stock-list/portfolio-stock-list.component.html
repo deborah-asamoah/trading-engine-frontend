@@ -1,29 +1,30 @@
 <div class="portfolio-stock-list">
 
-      <div class="modal-header">
-        <div>{{portfolioName}}</div>
-      </div>
+  <div class="modal-header">
+    <div>{{portfolioName}}</div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal?.dismiss('Cross click')"></button>
+  </div>
 
-      <div class="modal-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Quantity</th>
-                <th scope="col">Order Side</th>
-                <th scope="col">Order Type</th>
-                <th scope="col">Order Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let portfolioOrder of portfolioOrders; index as i">
-                <td>{{portfolioOrder.product}}</td>
-                <td>{{portfolioOrder.quantity}}</td>
-                <td>{{portfolioOrder.side}}</td>
-                <td>{{portfolioOrder.type}}</td>
-                <td>{{portfolioOrder.product}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Product Name</th>
+          <th scope="col">Product Quantity</th>
+          <th scope="col">Order Side</th>
+          <th scope="col">Order Type</th>
+          <th scope="col">Order Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let portfolioOrder of portfolioOrders; index as i">
+          <td>{{portfolioOrder.product}}</td>
+          <td>{{portfolioOrder.quantity}}</td>
+          <td>{{portfolioOrder.side}}</td>
+          <td>{{portfolioOrder.type}}</td>
+          <td>{{portfolioOrder.product}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

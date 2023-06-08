@@ -1,0 +1,5 @@
+<div [ngSwitch]="state">
+  <div *ngSwitchCase="OrderStatus.COMPLETED" class="status-chip badge rounded-pill text-bg-success">COMPLETED</div>
+  <div *ngSwitchCase="OrderStatus.OPEN" class="status-chip badge rounded-pill text-bg-info">OPEN</div>
+  <div *ngSwitchCase="OrderStatus.CANCELLED" class="status-chip badge rounded-pill text-bg-danger">CANCELLED</div>
+</div>

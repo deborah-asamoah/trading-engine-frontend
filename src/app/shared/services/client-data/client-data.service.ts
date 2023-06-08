@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import APIException from 'src/app/core/models/api-exception.model';
@@ -7,6 +11,7 @@ import CreatePortfolio from 'src/app/core/models/createportfolio.model';
 import Order from 'src/app/core/models/order.model';
 import { environment } from 'src/environments/environment.development';
 import PortfolioListDTO from '../../models/portfolioListDTO.model';
+import OrdersListDto from '../../models/ordersListDto.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,12 +39,40 @@ export class ClientDataService {
       .pipe(catchError(this.handleError));
   }
 
+  getOrders() {
+    return this.http
+      .get<OrdersListDto>(environment.ordersBaseUrl, {
+        params: new HttpParams().set('client', this.client.id),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   getPortfolios() {
     return this.http
       .get<PortfolioListDTO>(
         `${environment.portfoliosBaseUrl}/client/${this._client.id}`
       )
       .pipe(catchError(this.handleError));
+  }
+
+  createPortfolio(createPortfolio: CreatePortfolio) {
+    createPortfolio.clientID = this._client.id;
+    return this.http
+      .post(`${environment.portfoliosBaseUrl}`, createPortfolio)
+      .pipe(catchError(this.handleError));
+  }
+
+  getPortfolioOrders(id: string) {
+    return this.http
+      .get(`${environment.portfoliosBaseUrl}/${id}/orders`)
+      .pipe(catchError(this.handleError));
+  }
+
+  deletePortfolio(portfolioId: string) {
+    console.log(portfolioId)
+    return this.http
+    .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`)
+    .pipe(catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse) {
@@ -55,30 +88,4 @@ export class ClientDataService {
     // Return an observable with a user-facing error message.
     return throwError(() => error);
   }
-
-
-  createPortfolio(createPortfolio: CreatePortfolio) {
-    createPortfolio.clientID = this._client.id;
-    return this.http
-      .post(`${environment.portfoliosBaseUrl}`, createPortfolio);
-  }
-
-
-  deletePortfolio(portfolioId: string) {
-    console.log(portfolioId)
-    return this.http
-    .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`);
-  }
-
-
-
-
-  getPortfolioOrders(id: string) {
-    return this.http.get(`${environment.portfoliosBaseUrl}/${id}/orders`).pipe(catchError(this.handleError));
-  }
-
-
-
-
-
 }
