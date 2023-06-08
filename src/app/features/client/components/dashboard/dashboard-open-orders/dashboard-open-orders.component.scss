@@ -1,5 +1,5 @@
 .dashboard__open-orders {
-  max-height: 53.075rem;
+  max-height: 46rem;
   height: 100%;
   padding: 1.2rem;
   overflow-y: auto;
@@ -19,7 +19,7 @@
     display: flex;
 
     & select {
-      margin: 0 .2rem;
+      margin: 0 0.2rem;
     }
   }
   &__no-data {
