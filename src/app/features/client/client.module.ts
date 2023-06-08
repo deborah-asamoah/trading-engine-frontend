@@ -38,6 +38,9 @@ import { MarketDataService } from './services/market-data/market-data.service';
 import marketDataServiceFactory from './services/market-data/market-data-service-factory';
 import { CreatePortfolioComponent } from './components/portfolio/create-portfolio/create-portfolio.component';
 import { PortfolioStockListComponent } from './components/portfolio/portfolio-stock-list/portfolio-stock-list.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { OrdersHeaderComponent } from './components/orders/orders-header/orders-header.component';
+import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { PortfolioStockListComponent } from './components/portfolio/portfolio-st
     PortfoliosListComponent,
     PortfoliosComponent,
     CreatePortfolioComponent,
-    PortfolioStockListComponent
+    PortfolioStockListComponent,
+    OrdersComponent,
+    OrdersHeaderComponent,
+    OrdersListComponent,
   ],
   imports: [
     CommonModule,
