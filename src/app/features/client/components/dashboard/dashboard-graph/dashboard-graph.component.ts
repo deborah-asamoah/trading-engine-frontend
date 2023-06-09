@@ -1,17 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Message } from '@stomp/stompjs';
-import {
-  Chart,
-  ChartType,
-  ChartConfiguration,
-  ChartDataset,
-  ChartTypeRegistry,
-  ScatterDataPoint,
-  BubbleDataPoint,
-  ChartEvent,
-} from 'chart.js';
-import { default as Annotation } from 'chartjs-plugin-annotation';
-import { BaseChartDirective } from 'ng2-charts';
 import { MarketDataService } from '../../../services/market-data/market-data.service';
 import { marketDataUrls } from '../../../services/market-data/market-data-service-factory';
 import { Exchange } from 'src/app/core/models/exchange.enum';
@@ -38,77 +26,63 @@ export class DashboardGraphComponent implements OnInit {
   ];
   exchangeDataSets: Map<
     Exchange,
-    ChartDataset<
-      keyof ChartTypeRegistry,
-      (number | ScatterDataPoint | BubbleDataPoint | null)[]
-    >[]
+    {
+      type: string;
+      showInLegend: boolean;
+      name: string;
+      dataPoints: {
+        label: string;
+        y: number;
+      }[];
+    }[]
   > = new Map();
-
-  constructor(private marketDataService: MarketDataService) {
-    Chart.register(Annotation);
-  }
-
-  lineChartData: ChartConfiguration['data'] = {
-    datasets: [],
+  isLoading = false;
+  chartOptions = {
+    animationEnabled: true,
+    title: {
+      text: '',
+    },
+    axisX: {
+      title: 'Months',
+    },
+    axisY: {
+      title: 'Last Traded Price',
+      titleFontSize: 20,
+    },
+    toolTip: {
+      shared: true,
+    },
+    legend: {
+      cursor: 'pointer',
+      itemclick: function (e: any) {
+        if (
+          typeof e.dataSeries.visible === 'undefined' ||
+          e.dataSeries.visible
+        ) {
+          e.dataSeries.visible = false;
+        } else {
+          e.dataSeries.visible = true;
+        }
+        e.chart.render();
+      },
+    },
+    data: <any>[],
   };
-  public lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5,
-      },
-    },
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      y: {
-        position: 'left',
-      },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red',
-        },
-      },
-    },
+  chart?: any;
 
-    plugins: {
-      legend: { display: true },
-      annotation: {
-        annotations: [
-          {
-            type: 'line',
-            scaleID: 'x',
-            value: 'March',
-            borderColor: 'orange',
-            borderWidth: 2,
-            label: {
-              display: true,
-              position: 'center',
-              color: 'orange',
-              content: 'LineAnno',
-              font: {
-                weight: 'bold',
-              },
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  public lineChartType: ChartType = 'line';
-
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  constructor(private marketDataService: MarketDataService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.marketDataService
       .watch(marketDataUrls.trendTopic)
       .subscribe((message: Message) => {
+        this.isLoading = true;
         const data = JSON.parse(message.body);
         this.parseDatasets(data);
-        this.lineChartData.datasets = this.exchangeDataSets.get(Exchange.MAL1)!;
+        this.chartOptions.data = this.exchangeDataSets.get(Exchange.MAL1)!;
+        this.isLoading = false;
+        this.chart?.render();
       });
     this.marketDataService.publish({
       destination: marketDataUrls.initialTrendTopic,
@@ -116,7 +90,27 @@ export class DashboardGraphComponent implements OnInit {
   }
 
   private parseDatasets(data: LastProductTradeDto | LastProductTradeUpdateDto) {
+    console.log(this.exchangeDataSets);
     if ((data as LastProductTradeUpdateDto).exchange !== undefined) {
+      const exchangeData = this.exchangeDataSets.get(
+        (data as LastProductTradeUpdateDto).exchange
+      );
+      console.log(exchangeData);
+      (data as LastProductTradeUpdateDto).lastProductTrades.forEach((trade) => {
+        const dataPoint = {
+          label: new Date(trade.timestamp).toLocaleTimeString(),
+          y: trade.lastTradedPrice,
+        };
+        const line = exchangeData?.find((item) => item.name === trade.product);
+        const index = exchangeData?.indexOf(line!) ?? 0;
+        line?.dataPoints.push(dataPoint);
+        exchangeData![index] = line!;
+      });
+      this.exchangeDataSets.set(
+        (data as LastProductTradeUpdateDto).exchange,
+        exchangeData!
+      );
+      console.log(this.exchangeDataSets);
       return;
     }
     const firstExchangeData = (data as LastProductTradeDto).MAL1;
@@ -133,41 +127,24 @@ export class DashboardGraphComponent implements OnInit {
   private parseExchangeData(exchangeData: TradeProducts, dataset: Object[]) {
     Object.entries(exchangeData).forEach((item) => {
       const productList = item[1] as LastProductTrade[];
-      const prices: number[] = [];
-      productList.forEach((trade) => prices.push(trade.lastTradedPrice));
+      const prices: { label: string; y: number }[] = [];
+      productList.forEach((trade) =>
+        prices.push({
+          label: new Date(trade.timestamp).toLocaleTimeString(),
+          y: trade.lastTradedPrice,
+        })
+      );
       const graphData = {
-        data: prices,
-        label: item[0],
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        type: 'spline',
+        showInLegend: true,
+        name: item[0],
+        dataPoints: prices,
       };
       dataset.push(graphData);
     });
   }
 
-  // events
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: {}[];
-  }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: {}[];
-  }): void {
-    console.log(event, active);
+  onChartEvent(chart: any) {
+    this.chart = chart;
   }
 }

@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.0.4",
     "@angular/platform-browser-dynamic": "^16.0.4",
     "@angular/router": "^16.0.4",
+    "@canvasjs/angular-charts": "^1.0.1",
     "@fortawesome/angular-fontawesome": "^0.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
@@ -27,9 +28,6 @@
     "@popperjs/core": "^2.11.6",
     "@stomp/rx-stomp": "^2.0.0",
     "bootstrap": "^5.2.3",
-    "chart.js": "^3.6.0",
-    "chartjs-plugin-annotation": "^2.2.1",
-    "ng2-charts": "^4.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

@@ -11,7 +11,6 @@ import {
 } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgChartsModule } from 'ng2-charts';
 import {
   faAngleRight,
   faArrowRightFromBracket,
@@ -41,6 +40,7 @@ import { PortfolioStockListComponent } from './components/portfolio/portfolio-st
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OrdersHeaderComponent } from './components/orders/orders-header/orders-header.component';
 import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,7 @@ import { OrdersListComponent } from './components/orders/orders-list/orders-list
     ReactiveFormsModule,
     SharedModule,
     ToastContainerComponent,
-    NgChartsModule,
+    CanvasJSAngularChartsModule,
   ],
   providers: [
     {
