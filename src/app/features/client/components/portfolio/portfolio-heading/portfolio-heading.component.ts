@@ -6,16 +6,13 @@ import { ClientDataService } from 'src/app/shared/services/client-data/client-da
 @Component({
   selector: 'portfolio-heading',
   templateUrl: './portfolio-heading.component.html',
-  styleUrls: ['./portfolio-heading.component.scss']
+  styleUrls: ['./portfolio-heading.component.scss'],
 })
 export class PortfolioHeadingComponent implements OnInit {
-
   client!: Client;
-
-  balance = 150.0;
+  balance = 0.0;
   boundOpenOrderBoxModal = this.openOrderBoxModal.bind(this);
   @ViewChild('orderBox') element!: ElementRef;
-
 
   constructor(
     private clientDataService: ClientDataService,
@@ -24,6 +21,11 @@ export class PortfolioHeadingComponent implements OnInit {
 
   ngOnInit(): void {
     this.client = this.clientDataService.client;
+    this.clientDataService.getClientBalance().subscribe({
+      next: (value) => (this.balance = value),
+      error: (err) => console.error(err),
+      complete: () => {},
+    });
   }
 
   openOrderBoxModal() {
@@ -32,5 +34,4 @@ export class PortfolioHeadingComponent implements OnInit {
       scrollable: true,
     });
   }
-
 }
