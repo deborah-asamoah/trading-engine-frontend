@@ -68,11 +68,19 @@ export class ClientDataService {
       .pipe(catchError(this.handleError));
   }
 
-  deletePortfolio(portfolioId: string) {
-    console.log(portfolioId)
+  getClientBalance() {
     return this.http
-    .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`)
-    .pipe(catchError(this.handleError));
+      .get<number>(
+        `${environment.clientBaseUrl}/${this.client.id}/account-balance`
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  deletePortfolio(portfolioId: string) {
+    console.log(portfolioId);
+    return this.http
+      .delete(`${environment.portfoliosBaseUrl}/${portfolioId}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse) {
