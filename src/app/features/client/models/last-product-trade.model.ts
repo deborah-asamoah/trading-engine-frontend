@@ -5,7 +5,7 @@ interface LastProductTrade {
   lastTradedPrice: number;
   exchange: Exchange;
   product: string;
-  timestamp: Date;
+  timestamp: string;
 }
 
 export default LastProductTrade;
