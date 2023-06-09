@@ -13,7 +13,6 @@ export class AdminDashboardNavbarComponent {
   isMenuCollapsed = true;
 
   logout() {
-    console.log('logged out');
     this.authClientService.doLogout();
   }
 

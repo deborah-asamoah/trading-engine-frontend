@@ -17,28 +17,18 @@
         </button>
         <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav header__navbar__items mt-3 ms-2">
-            <li routerLinkActive="active" class="nav-item">
-              <a routerLink="/admin/dashboard">
-                <fa-icon [icon]="'house'"></fa-icon>
-                Dashboard
-              </a>
-            </li>
-            <li routerLinkActive="active" class="nav-item">
-              <a routerLink="/admin/trades">
-                <fa-icon [icon]="'chart-simple'"></fa-icon>
-                Trades
-              </a>
-            </li>
+            <p>
+              <fa-icon [icon]="'chart-simple'"></fa-icon>
+              <span [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarToggler">Trades</span>
+            </p>
+            <li routerLinkActive="active" ><a routerLink="/admin/trades/open" class="trades">Open</a></li>
+            <li routerLinkActive="active"><a routerLink="/admin/trades/cancelled" class="trades">Cancelled</a></li>
+            <li routerLinkActive="active"><a routerLink="/admin/trades/filled" class="trades">Filled</a></li>
+
             <li routerLinkActive="active" class="nav-item">
               <a routerLink="/admin/clients">
                 <fa-icon [icon]="'users'"></fa-icon>
                 Clients
-              </a>
-            </li>
-            <li routerLinkActive="active" class="nav-item">
-              <a routerLink="/admin/exchanges">
-                <fa-icon [icon]="'right-left'"></fa-icon>
-                Exchanges
               </a>
             </li>
             <li routerLinkActive="active" class="nav-item" (click)="logout()">

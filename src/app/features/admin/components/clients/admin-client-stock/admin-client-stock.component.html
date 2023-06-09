@@ -3,9 +3,9 @@
     <div class="modal-header">
       <div>Select Portfolio</div>
 
-      <select class="form-select" aria-label="Sort data">
+      <select (change)="onPortfolioSelect($event)" class="form-select" aria-label="Sort data">
         <option selected disabled value="">All Portfolio</option>
-        <option value="MAL1">Default Portfolio</option>
+        <option *ngFor="let portfolio of portfolios" value="{{portfolio.id}}" >{{portfolio.name}}</option>
     </select>
     </div>
 
@@ -21,12 +21,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>AAPL</td>
-              <td>12</td>
-              <td>BUY</td>
-              <td>SIDE</td>
-              <td>Closed</td>
+            <tr *ngFor="let portfolio of portfolioStock">
+              <td>{{portfolio.product}}</td>
+              <td>{{portfolio.quantity}}</td>
+              <td>{{portfolio.side}}</td>
+              <td>{{portfolio.type}}</td>
+              <td>{{status}}</td>
             </tr>
           </tbody>
         </table>
