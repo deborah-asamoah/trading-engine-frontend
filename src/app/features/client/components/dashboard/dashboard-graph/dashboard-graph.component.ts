@@ -40,10 +40,15 @@ export class DashboardGraphComponent implements OnInit {
   chartOptions = {
     animationEnabled: true,
     title: {
-      text: '',
+      text: 'Market Trend',
+      fontSize: 25,
+      fontWeight: "'normal'",
+      horizontalAlign: 'left',
+      padding: 5,
     },
     axisX: {
-      title: 'Months',
+      title: 'Time',
+      titleFontSize: 20,
     },
     axisY: {
       title: 'Last Traded Price',

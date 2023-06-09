@@ -10,40 +10,33 @@ import APIException from 'src/app/core/models/api-exception.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   formGroup: FormGroup | any;
   submitted = false;
   private client!: Client;
   errorMessage!: string;
   errorCode!: number;
 
-  constructor (
+  constructor(
     private authClientService: AuthClientService,
     private clientService: ClientDataService,
     public location: Location,
-    public router: Router,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      email: new FormControl<string>(
-        '', 
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
-      password: new FormControl<string>(
-        '', 
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
-    })
+      email: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+      password: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+    });
   }
 
   get email() {
@@ -62,38 +55,34 @@ export class LoginComponent implements OnInit {
       return;
     }
     console.log(this.formGroup.value);
-    this.authClientService.authenticateClient(this.formGroup.value).subscribe(
-      {
-        next: (res: any) => {
-          this.authClientService.setToken(res.accessToken);
-          this.client = new Client(res.id, res.name, res.email);
-          this.clientService.client = this.client;
+    this.authClientService.authenticateClient(this.formGroup.value).subscribe({
+      next: (res: any) => {
+        this.authClientService.setToken(res.accessToken);
+        this.client = new Client(res.id, res.name, res.email, res.role);
+        this.clientService.client = this.client;
 
-          if (res.role == "USER") {
-            this.location.replaceState('/client/dashboard');
-            this.router.navigate(['client/dashboard']);
-          } else if (res.role == "ADMIN") {
-            this.location.replaceState('/admin/dashboard');
-            this.router.navigate(['admin/trades/open']);
+        if (res.role == 'USER') {
+          this.location.replaceState('/client/dashboard');
+          this.router.navigate(['client/dashboard']);
+        } else if (res.role == 'ADMIN') {
+          this.location.replaceState('/admin/dashboard');
+          this.router.navigate(['admin/trades/open']);
+        }
+      },
 
-          }
-        },
-
-        error: (err: APIException) => {
+      error: (err: APIException) => {
         this.errorMessage = err.message;
         this.errorCode = err.statusCode;
-        }
-      }
-    )
+      },
+    });
     this.formGroup.reset();
   }
 
   onEmailChange() {
-    this.email.value
+    this.email.value;
   }
 
   onPasswordChange() {
-    this.password.value
+    this.password.value;
   }
-
 }
