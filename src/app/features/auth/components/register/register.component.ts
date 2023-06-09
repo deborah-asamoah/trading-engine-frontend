@@ -10,7 +10,7 @@ import APIException from 'src/app/core/models/api-exception.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   formGroup: FormGroup | any;
@@ -25,33 +25,24 @@ export class RegisterComponent implements OnInit {
     private authClientService: AuthClientService,
     private clientService: ClientDataService,
     public location: Location,
-    public router: Router,
-  ) { }
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      name: new FormControl<string>(
-        '',
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
-      email: new FormControl<string>(
-        '',
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
-      password: new FormControl<string>(
-        '',
-        {
-          validators: Validators.required,
-          updateOn: 'submit',
-        }
-      ),
-    })
+      name: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+      email: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+      password: new FormControl<string>('', {
+        validators: Validators.required,
+        updateOn: 'submit',
+      }),
+    });
   }
 
   get name() {
@@ -75,43 +66,39 @@ export class RegisterComponent implements OnInit {
     }
     console.log(this.formGroup.value);
 
-    this.authClientService.registerClient(this.formGroup.value).subscribe(
-      {
-        next: (res: any) => {
-          this.authClientService.setToken(res.accessToken);
-          this.client = new Client(res.id, res.name, res.email);
-          this.clientService.client = this.client;
+    this.authClientService.registerClient(this.formGroup.value).subscribe({
+      next: (res: any) => {
+        this.authClientService.setToken(res.accessToken);
+        this.client = new Client(res.id, res.name, res.email, res.role);
+        this.clientService.client = this.client;
 
-          if (res.role == "USER") {
-            this.location.replaceState('/client/dashboard');
-            this.router.navigate(['client/dashboard']);
-          } else if (res.role == "ADMIN") {
-            this.location.replaceState('/admin/dashboard');
-            this.router.navigate(['admin/dashboard']);
+        if (res.role == 'USER') {
+          this.location.replaceState('/client/dashboard');
+          this.router.navigate(['client/dashboard']);
+        } else if (res.role == 'ADMIN') {
+          this.location.replaceState('/admin/dashboard');
+          this.router.navigate(['admin/dashboard']);
+        }
+      },
 
-          }
-        },
-
-        error: (err: APIException) => {
+      error: (err: APIException) => {
         this.errorMessage = err.message;
         this.errorCode = err.statusCode;
-        }
-      }
-    );
+      },
+    });
 
     this.formGroup.reset();
   }
 
   onNameChange() {
-    this.name.value
+    this.name.value;
   }
 
   onEmailChange() {
-    this.email.value
+    this.email.value;
   }
 
   onPasswordChange() {
-    this.password.value
+    this.password.value;
   }
-
 }

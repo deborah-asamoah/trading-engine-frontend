@@ -7,11 +7,12 @@ import {
 import { Observable } from 'rxjs';
 import { AuthClientService } from '../services/auth-client/auth-client.service';
 import { ClientDataService } from '../services/client-data/client-data.service';
+import Role from 'src/app/core/models/role.enum';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard {
+export class AdminGuard {
   constructor(
     public authClientService: AuthClientService,
     public clientService: ClientDataService,
@@ -22,7 +23,10 @@ export class AuthGuard {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authClientService.isLoggedIn != true) {
+    if (
+      this.clientService.client.role !== Role.ADMIN ||
+      this.authClientService.isLoggedIn != true
+    ) {
       this.router.navigate(['/auth/login']);
     }
     return true;

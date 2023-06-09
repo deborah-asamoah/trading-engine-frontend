@@ -5,6 +5,7 @@ import { CompleteTradesComponent } from './components/trades/complete-trades/com
 import { OpenTradesComponent } from './components/trades/open-trades/open-trades.component';
 import { AdminBaseComponent } from './pages/admin-base/admin-base.component';
 import { AdminClientsComponent } from './pages/admin-clients/admin-clients.component';
+import { AdminGuard } from 'src/app/shared/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -14,30 +15,34 @@ const routes: Routes = [
       {
         path: 'trades/open',
         title: 'Trades',
-        component: OpenTradesComponent
+        component: OpenTradesComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'trades/cancelled',
         title: 'Trades',
-        component: CancelledTradesComponent
+        component: CancelledTradesComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'trades/filled',
         title: 'Trades',
-        component: CompleteTradesComponent
+        component: CompleteTradesComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'clients',
         title: 'All Clients',
-        component: AdminClientsComponent
+        component: AdminClientsComponent,
+        canActivate: [AdminGuard],
       },
     ],
-    component: AdminBaseComponent
+    component: AdminBaseComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
