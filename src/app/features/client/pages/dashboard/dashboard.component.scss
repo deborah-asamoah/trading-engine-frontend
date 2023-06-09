@@ -1,7 +1,7 @@
 .dashboard {
   padding: 3rem 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: minmax(5rem, auto);
   gap: 1rem;
   position: relative;
@@ -13,18 +13,18 @@
     z-index: 100;
   }
   &__heading {
-    grid-column: 1 / 5;
+    grid-column: 1 / 8;
     grid-row: 1 / 2;
   }
   &__market-brief {
-    grid-column: 1 / 5;
+    grid-column: 1 / 6;
     grid-row: 2 / 3;
   }
   &__open-orders {
-    grid-column: 4 / 5;
+    grid-column: 6 / 8;
   }
   &__graph {
-    grid-column: 1 / 4;
+    grid-column: 1 / 8;
     grid-row: 3 / 4;
   }
 }
