@@ -31,6 +31,23 @@ export class AdminClientStockComponent implements OnInit {
       (res) => {
         console.log(res);
         this.portfolios = res.portfolioDTOS
+
+        console.log(this.portfolios)
+
+        const portId = this.portfolios.find(element => element.defaultPortfolio)?.id;
+
+        console.log(portId)
+
+        this.adminService.getPortfolioOrders(portId!).subscribe(
+          (res) => {
+            console.log(res);
+            this.portfolioStock = (res as {data: OrdersDto[]}).data;
+    
+            this.portfolioStock.forEach(element => {
+              this.status = this.computeStatus(element)
+            });
+          }
+        )
       }
     )    
   }
