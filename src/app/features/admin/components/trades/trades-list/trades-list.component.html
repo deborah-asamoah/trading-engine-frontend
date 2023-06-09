@@ -11,7 +11,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let trade of trades" >
-			<td>{{trade.clientName}}</td>
+			<td>{{trade.clientName | titlecase}}</td>
             <td>{{trade.product}}</td>
             <td>{{trade.price}}</td>
             <td>{{trade.quantity}}</td>

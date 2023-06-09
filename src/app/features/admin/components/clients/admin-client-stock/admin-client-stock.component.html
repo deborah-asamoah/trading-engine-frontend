@@ -4,7 +4,6 @@
       <div>Select Portfolio</div>
 
       <select (change)="onPortfolioSelect($event)" class="form-select" aria-label="Sort data">
-        <option selected disabled value="">All Portfolio</option>
         <option *ngFor="let portfolio of portfolios" value="{{portfolio.id}}" >{{portfolio.name}}</option>
     </select>
     </div>

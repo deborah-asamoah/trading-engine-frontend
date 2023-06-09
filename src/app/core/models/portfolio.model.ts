@@ -1,18 +1,18 @@
 class Portfolio {
   id: string;
   name: string;
-  isDefault: string;
+  defaultPortfolio: string;
   clientId: string;
 
   constructor(
     id: string, 
     name: string,
-    isDefault: string,
+    defaultPortfolio: string,
     clientId: string
   ) {
     this.id = id;
     this.name = name;
-    this.isDefault = isDefault;
+    this.defaultPortfolio = defaultPortfolio;
     this.clientId = clientId;
   }
 }
