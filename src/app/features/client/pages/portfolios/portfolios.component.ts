@@ -27,6 +27,7 @@ export class PortfoliosComponent implements OnInit {
     this.clientDataService.getPortfolios().subscribe(
 			res => {
 			this.portfolios = res.portfolioDTOS;
+			console.log(this.portfolios);
 		})
   }
 

@@ -11,16 +11,13 @@ import { AdminBaseComponent } from './pages/admin-base/admin-base.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TradesListComponent } from './components/trades/trades-list/trades-list.component';
-import { TradesComponent } from './components/trades/trades/trades.component';
 import { OpenTradesComponent } from './components/trades/open-trades/open-trades.component';
-import { CancelledTradesComponent } from './components/trades/cancelled-trades/cancelled-trades.component';
-import { ClosedTradesComponent } from './components/trades/closed-trades/closed-trades.component';
-import { FailedTradesComponent } from './components/trades/failed-trades/failed-trades.component';
-import { FilledTradesComponent } from './components/trades/filled-trades/filled-trades.component';
 import { AdminClientsComponent } from './pages/admin-clients/admin-clients.component';
 import { AdminClientsListComponent } from './components/clients/admin-clients-list/admin-clients-list.component';
 import { AdminClientStockComponent } from './components/clients/admin-client-stock/admin-client-stock.component';
 import { AdminExchangesComponent } from './pages/admin-exchanges/admin-exchanges.component';
+import { CompleteTradesComponent } from './components/trades/complete-trades/complete-trades.component';
+import { CancelledTradesComponent } from './components/trades/cancelled-trades/cancelled-trades.component';
 
 
 @NgModule({
@@ -31,16 +28,13 @@ import { AdminExchangesComponent } from './pages/admin-exchanges/admin-exchanges
     AdminBaseComponent,
     AdminDashboardComponent,
     TradesListComponent,
-    TradesComponent,
     OpenTradesComponent,
-    CancelledTradesComponent,
-    ClosedTradesComponent,
-    FailedTradesComponent,
-    FilledTradesComponent,
     AdminClientsComponent,
     AdminClientsListComponent,
     AdminClientStockComponent,
-    AdminExchangesComponent
+    AdminExchangesComponent,
+    CompleteTradesComponent,
+    CancelledTradesComponent
   ],
   imports: [
     CommonModule,

@@ -1,20 +1,22 @@
 <table class="table table-striped">
-	<thead>
+	<thead class="position-static">
 		<tr>
 			<th scope="col">Client Name</th>
             <th scope="col">Stock</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Timestamp</th>
+            <th scope="col">Side</th>
+            <th scope="col">Type</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Gigi</td>
-            <td>IBM</td>
-            <td>4.00</td>
-            <td>12</td>
-            <td>2023-06-04</td>
+		<tr *ngFor="let trade of trades" >
+			<td>{{trade.clientName}}</td>
+            <td>{{trade.product}}</td>
+            <td>{{trade.price}}</td>
+            <td>{{trade.quantity}}</td>
+            <td>{{trade.side}}</td>
+            <td>{{trade.type}}</td>
 		</tr>
 	</tbody>
 </table>

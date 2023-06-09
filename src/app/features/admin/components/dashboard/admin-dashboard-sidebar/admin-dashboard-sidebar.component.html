@@ -13,15 +13,15 @@
 
 
       <ul class="sidebar__text__items">
-        <p>
-          <fa-icon [icon]="'chart-simple'"></fa-icon>
-          <span>Trades</span>
-        </p>
-        <li routerLinkActive="active" ><a routerLink="/admin/trades/open" class="trades">Open</a></li>
-        <li routerLinkActive="active"><a routerLink="/admin/trades/cancelled" class="trades">Cancelled</a></li>
-        <li routerLinkActive="active"><a routerLink="/admin/trades/closed" class="trades">Closed</a></li>
-        <li routerLinkActive="active"><a routerLink="/admin/trades/failed" class="trades">Failed</a></li>
-        <li routerLinkActive="active"><a routerLink="/admin/trades/filled" class="trades">Filled</a></li>
+        <div class="side-trades">
+          <p>
+            <fa-icon [icon]="'chart-simple'"></fa-icon>
+            <span>Trades</span>
+          </p>
+          <li routerLinkActive="active" ><a routerLink="/admin/trades/open" class="trades">Open</a></li>
+          <li routerLinkActive="active"><a routerLink="/admin/trades/cancelled" class="trades">Cancelled</a></li>
+          <li routerLinkActive="active"><a routerLink="/admin/trades/filled" class="trades">Filled</a></li>
+        </div>
 
         <li routerLinkActive="active">
           <a routerLink="/admin/clients" >
@@ -31,14 +31,7 @@
             </span>
           </a>
         </li>
-        <li routerLinkActive="active">
-          <a routerLink="/admin/exchanges">
-            <fa-icon [icon]="'right-left'"></fa-icon>
-            <span class="icon-text">
-              Exchanges
-            </span>
-          </a>
-        </li>
+
         <li class="mt-auto" (click)="logout()">
           <fa-icon [icon]="'arrow-right-from-bracket'"></fa-icon>
           <span class="icon-text">
